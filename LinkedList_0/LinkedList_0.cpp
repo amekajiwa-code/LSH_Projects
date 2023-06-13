@@ -17,9 +17,9 @@ void Print(); // O(N) 출력
 TNode* FindNode(int id);// O(N) 검색
 void DeleteNode(int id); // O(N) 삭제
 
-//void InsertNode(TNode* pNewNode); // 삽입
-//void UpdateNode //수정
-//void destroyNode(); // 소멸
+bool InsertNode(TNode* pPreNode); // 삽입
+void UpdateNode(TNode* node, int iValue); //수정
+void destroyNode(); // 소멸
 
 int main()
 {
@@ -34,18 +34,17 @@ int main()
     //검색
     TNode* findMe = FindNode(2);
     std::cout << findMe->iId << std::endl;
+    //삽입
+    InsertNode(findMe);
+    //수정
+    UpdateNode(findMe, 77);
     //삭제
     DeleteNode(3);
     //순회, 출력
     Print();
 
     //메모리 해제
-    /*TNode* pNode = g_pHead.;
-    while (pNode != NULL) {
-        TNode* pNext = pNode->pNext;
-        free(pNode);
-        pNode = pNext;
-    }*/
+    destroyNode();
 }
 // 검색, 삭제, 수정, 정렬, 저장, 불러오기, 삽입(중간), 소멸(전체)
 //모든 자료구조에서 이 12가지는 함수화 시켜놓고 작업해야 한다. 자료구조에 따라 기능을 빼거나 추가하면 된다.
@@ -67,8 +66,8 @@ TNode* Create(int count) {
 }
 
 void Link(TNode* pNewNode) {
-    if (g_pHead->pNext == NULL) {
-        g_pHead->pNext = pNewNode;
+    if (g_pHead == NULL) {
+        g_pHead = pNewNode;
     }
     else {
         g_pTail->pNext = pNewNode;
@@ -87,7 +86,7 @@ void Print() {
 }
 
 void DeleteNode(int id) {
-    TNode* pNode = g_pHead->pNext;
+    TNode* pNode = g_pHead;
     TNode* pPreNode = NULL;
     while (pNode != NULL) {
         TNode* pNext = pNode->pNext;
@@ -114,7 +113,7 @@ void DeleteNode(int id) {
 }
 
 TNode* FindNode(int id) {
-    TNode* pNode = g_pHead->pNext;
+    TNode* pNode = g_pHead;
     TNode* pPreNode = NULL;
     while (pNode != NULL) {
         TNode* pNext = pNode->pNext;
@@ -122,5 +121,34 @@ TNode* FindNode(int id) {
             return pNode;
         }
         pNode = pNext;
+    }
+    return NULL;
+}
+
+bool InsertNode(TNode* pPreNode) {
+    if (pPreNode == NULL) {
+        return false;
+    }
+    TNode* pNewNode = Create(99);
+    if (g_pHead == NULL) {
+        g_pHead = pNewNode;
+    }
+    else {
+        pNewNode->pNext = pPreNode->pNext;
+        pPreNode->pNext = pNewNode;
+    }
+    return true;
+}
+
+void UpdateNode(TNode* node, int iValue) {
+    node->iValue = iValue;
+}
+
+void destroyNode() {
+    TNode* deleteNode = g_pHead->pNext;
+    while (deleteNode != NULL) {
+        TNode* pNext = deleteNode->pNext;
+        //free(deleteNode);
+        deleteNode = pNext;
     }
 }
