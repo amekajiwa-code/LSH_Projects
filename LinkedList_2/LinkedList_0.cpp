@@ -16,6 +16,7 @@ void Link(TNode* pNewNode); // 연결
 void Print(); // O(N) 출력
 TNode* FindNode(int id);// O(N) 검색
 void DeleteNode(int id); // O(N) 삭제
+
 bool InsertNode(TNode* pPreNode); // 삽입
 void UpdateNode(TNode* node, int iValue); //수정
 void destroyNode(); // 소멸

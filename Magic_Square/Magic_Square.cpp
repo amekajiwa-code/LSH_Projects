@@ -5,12 +5,12 @@ void FillMagicSquare(int** square, int size);
 int** CreateSquare(int n);
 
 int main()
-{
+{//
+    //입력
     int n;
-    
     printf("홀수인 정수 n을 입력하시오 : ");
     scanf_s("%d", &n);
-    
+    printf("\n");
     //마방진생성
     int** mgSquare = CreateSquare(n);
     //마방진구축
@@ -23,6 +23,7 @@ int main()
         printf("\n");
     }
     //검증
+    printf("\n\n");
     for (int y = 0; y < n; ++y) {
         int SumLine = 0;
         for (int x = 0; x < n; ++x) {
@@ -82,16 +83,21 @@ void FillMagicSquare(int** square, int size) {
 }
 
 int** CreateSquare(int n) {
-    int** square = NULL;
     //2차원 포인터 배열 동적할당
+    int** square = NULL;
     square = (int**)malloc(sizeof(int*) * n);
-    for (int i = 0; i < n; ++i) {
-        square[i] = (int*)malloc(sizeof(int) * n);
+
+    if (square != NULL) {
+        for (int i = 0; i < n; ++i) {
+            square[i] = (int*)malloc(sizeof(int) * n);
+        }
     }
 
-    for (int y = 0; y < n; ++y) {
-        for (int x = 0; x < n; ++x) {
-            *(*(square + y) + x) = 0;
+    if (square != NULL) {
+        for (int y = 0; y < n; ++y) {
+            for (int x = 0; x < n; ++x) {
+                *(*(square + y) + x) = 0;
+            }
         }
     }
 
