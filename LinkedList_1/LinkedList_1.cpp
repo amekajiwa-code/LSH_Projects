@@ -22,7 +22,7 @@ node* find_node(int id); // 검색 -> 이분탐색으로 수정 이분탐색을 
 void delete_node(node* target); // 삭제 
 bool insert_node(node* insert_node); // 삽입
 void update_node(node* update_node, int value); //수정
-
+//
 int main() {
 	g_head_node.id = -1;
 	g_head_node.value = -1;
