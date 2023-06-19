@@ -13,6 +13,11 @@ struct node {
 	node* pre_node;
 };
 
+struct TMP {
+	node* L1;
+	node* L2;
+};
+
 node g_head_node;
 node* g_tail_node;
 int g_counter = 0;
@@ -30,42 +35,61 @@ void save(); // 저장
 void load(); // 불러오기
 void init(); // 초기값
 
-void merge(int data[], int left, int mid, int right) {
-	int i = left;
-	int j = mid + 1;
-	int k = left;
-	//한쪽 리스트가 비워질때까지 비교해서 정렬될 리스트에 채워넣음
-	while (i <= mid && j <= right) {
-		if (data[i] <= data[j]) {
-			sorted[k++] = data[i++];
-		}
-		else {
-			sorted[k++] = data[j++];
-		}
-	}
-	// 남아 있는 값들을 일괄 복사
-	if (i > mid) {
-		for (int l = j; l <= right; l++)
-			sorted[k++] = data[l];
-	}
-	// 남아 있는 값들을 일괄 복사
-	else {
-		for (int l = i; l <= mid; l++)
-			sorted[k++] = data[l];
-	}
-	//값에 의한 복사
-	for (int l = left; l <= right; l++) {
-		data[l] = sorted[l];
-	}
-}
+//병합
+node* merge(node* L1, node* L2) {
+	node* result = NULL;
 
-void merge_sort(int data[], int left, int right) {
-	int mid;
-	if (left < right) {
-		mid = (left + right) / 2;
-		merge_sort(data, left, mid);
-		merge_sort(data, mid + 1, right);
-		merge(data, left, mid, right);
+	if (L1 == NULL) {
+		return L2;
+	}
+	else if (L2 == NULL) {
+		return L1;
+	}
+
+	//오름차순으로 한쪽 연결리스트가 비워질때까지 채움
+	if (L1->id < L2->id) {
+		result = L1;
+		result->next_node = merge(L1->next_node, L2);
+	}
+	else {
+		result = L2;
+		result->next_node = merge(L1, L2->next_node);
+	}
+	return result;
+}
+//분할
+TMP partition(node* L, int k) {
+	TMP result;
+	node* p = L;
+	node* L1 = L;
+	node* L2;
+
+	for (int i = 0; i < k - 1; ++i) {
+		p = p->next_node;
+	}
+
+	L2 = p->next_node;
+	p->next_node = NULL;
+
+	result.L1 = L1;
+	result.L2 = L2;
+
+	return result;
+}
+//정렬
+void merge_sort(node** L, int k) {
+	node* L1 = NULL;
+	node* L2 = NULL;
+	TMP tmp;
+	node* i;
+	if (k > 1 && *L != NULL) {
+		tmp = partition(*L, k / 2);
+		L1 = tmp.L1;
+		L2 = tmp.L2;
+	
+		merge_sort(&L1, k / 2);
+		merge_sort(&L2, (int)((k / 2.0) + 0.5));
+		*L = merge(L1, L2);
 	}
 }
 
