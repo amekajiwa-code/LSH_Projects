@@ -1,22 +1,25 @@
 #pragma once
+#include <iostream>
 
-class node {
-	int id;
-	int value;
-	node* next_node;
-	node* pre_node;
-};
+namespace Template {
+	class node {
+		int id;
+		int value;
+		node* next_node;
+		node* pre_node;
+	};
 
-node g_head_node;
-node* g_tail_node;
-int g_counter = 0;
+	node g_head_node;
+	node* g_tail_node;
+	int g_counter = 0;
 
-class MyLinkedList {
+	class LinkedList {
 
-public:
-	MyLinkedList() {
+	public:
+		LinkedList() {
 
-	}
-private:
+		}
+	private:
 
-};
+	};
+}

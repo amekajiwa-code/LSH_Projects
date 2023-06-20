@@ -36,62 +36,11 @@ void load(); // 불러오기
 void init(); // 초기값
 
 //병합
-node* merge(node* L1, node* L2) {
-	node* result = NULL;
-
-	if (L1 == NULL) {
-		return L2;
-	}
-	else if (L2 == NULL) {
-		return L1;
-	}
-
-	//오름차순으로 한쪽 연결리스트가 비워질때까지 채움
-	if (L1->id < L2->id) {
-		result = L1;
-		result->next_node = merge(L1->next_node, L2);
-	}
-	else {
-		result = L2;
-		result->next_node = merge(L1, L2->next_node);
-	}
-	return result;
-}
+node* merge(node* L1, node* L2);
 //분할
-TMP partition(node* L, int k) {
-	TMP result;
-	node* p = L;
-	node* L1 = L;
-	node* L2;
-
-	for (int i = 0; i < k - 1; ++i) {
-		p = p->next_node;
-	}
-
-	L2 = p->next_node;
-	p->next_node = NULL;
-
-	result.L1 = L1;
-	result.L2 = L2;
-
-	return result;
-}
+TMP partition(node* L, int k);
 //정렬
-void merge_sort(node** L, int k) {
-	node* L1 = NULL;
-	node* L2 = NULL;
-	TMP tmp;
-	node* i;
-	if (k > 1 && *L != NULL) {
-		tmp = partition(*L, k / 2);
-		L1 = tmp.L1;
-		L2 = tmp.L2;
-	
-		merge_sort(&L1, k / 2);
-		merge_sort(&L2, (int)((k / 2.0) + 0.5));
-		*L = merge(L1, L2);
-	}
-}
+void merge_sort(node** L, int k);
 
 node* create_node() {
 	node* new_node = (node*)malloc(sizeof(node));
@@ -131,20 +80,13 @@ void push_back(node* new_node) {
 void print_node() {
 	node* node = g_head_node.next_node;
 	while (node != NULL) {
-		cout << node->id << " ";
+		cout << node->id << "," << node->value << " / ";
 		node = node->next_node;
 	}
 	cout << endl;
 }
 
-void destroy_node() {
-	node* node = g_head_node.next_node;
-	while (node != NULL) {
-		node = node->next_node;
-		free(node);
-		node = NULL;
-	}
-}
+
 
 node* find_node(int id) {
 	node* node = g_head_node.next_node;
@@ -225,5 +167,63 @@ void init() {
 	for (int i = 0; i < 10; ++i) {
 		node* new_node = create_node();
 		push_back(new_node);
+	}
+}
+
+//병합
+node* merge(node* L1, node* L2) {
+	node* result = NULL;
+
+	if (L1 == NULL) {
+		return L2;
+	}
+	else if (L2 == NULL) {
+		return L1;
+	}
+
+	//오름차순으로 한쪽 연결리스트가 비워질때까지 채움
+	if (L1->value < L2->value) {
+		result = L1;
+		result->next_node = merge(L1->next_node, L2);
+	}
+	else {
+		result = L2;
+		result->next_node = merge(L1, L2->next_node);
+	}
+	return result;
+}
+
+TMP partition(node* L, int k) {
+	TMP result;
+	node* p = L;
+	node* L1 = L;
+	node* L2;
+
+	for (int i = 0; i < k - 1; ++i) {
+		p = p->next_node;
+	}
+
+	L2 = p->next_node;
+	p->next_node = NULL;
+
+	result.L1 = L1;
+	result.L2 = L2;
+
+	return result;
+}
+
+void merge_sort(node** L, int k) {
+	node* L1 = NULL;
+	node* L2 = NULL;
+	TMP tmp;
+
+	if (k > 1 && *L != NULL) {
+		tmp = partition(*L, k / 2);
+		L1 = tmp.L1;
+		L2 = tmp.L2;
+
+		merge_sort(&L1, k / 2);
+		merge_sort(&L2, (int)((k / 2.0) + 0.5));
+		*L = merge(L1, L2);
 	}
 }
