@@ -5,11 +5,39 @@
 using namespace std;
 
 //DataStructure
-struct Node {
+class Node {
+private:
 	int id;
 	int value;
-	Node* nextNode;
+	
 	Node* preNode;
+public:
+	Node* nextNode;
+
+	int GetId() const {
+		return this->id;
+	}
+	int GetValue() const {
+		return this->value;
+	}
+	Node* GetNextNode() const {
+		return this->nextNode;
+	}
+	Node* GetPreNode() const {
+		return this->preNode;
+	}
+	void SetId(int id) {
+		this->id = id;
+	}
+	void SetValue(int value) {
+		this->value = value;
+	}
+	void SetNextNode(Node* node) {
+		this->nextNode = node;
+	}
+	void SetPreNode(Node* node) {
+		this->preNode = node;
+	}
 };
 
 struct TMP {
@@ -53,7 +81,8 @@ public:
 			L2 = tmp.L2;
 
 			merge_sort(&L1, k / 2);
-			merge_sort(&L2, (int)((k / 2.0) + 0.5));
+			merge_sort(&L2, (k + 1) / 2);
+			//merge_sort(&L2, (int)((k / 2.0) + 0.5));
 			*L = merge(L1, L2);
 		}
 	}
@@ -65,11 +94,11 @@ public:
 		Node* L2;
 
 		for (int i = 0; i < k - 1; ++i) {
-			p = p->nextNode;
+			p = p->GetNextNode();
 		}
 
-		L2 = p->nextNode;
-		p->nextNode = nullptr;
+		L2 = p->GetNextNode();
+		p->SetNextNode(nullptr);
 
 		result.L1 = L1;
 		result.L2 = L2;
@@ -88,13 +117,13 @@ public:
 		}
 
 		//오름차순으로 한쪽 연결리스트가 비워질때까지 채움
-		if (L1->value < L2->value) {
+		if (L1->GetValue() < L2->GetValue()) {
 			result = L1;
-			result->nextNode = merge(L1->nextNode, L2);
+			result->SetNextNode(merge(L1->GetNextNode(), L2));
 		}
 		else {
 			result = L2;
-			result->nextNode = merge(L1, L2->nextNode);
+			result->SetNextNode(merge(L1, L2->GetNextNode()));
 		}
 		return result;
 	}
