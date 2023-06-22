@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 //DataStructure
@@ -41,11 +43,11 @@ private:
 class MergeSort {
 public:
 	void merge_sort(Node** L, int k) {
-		Node* L1 = NULL;
-		Node* L2 = NULL;
+		Node* L1 = nullptr;
+		Node* L2 = nullptr;
 		TMP tmp;
 
-		if (k > 1 && *L != NULL) {
+		if (k > 1 && *L != nullptr) {
 			tmp = partition(*L, k / 2);
 			L1 = tmp.L1;
 			L2 = tmp.L2;
@@ -67,7 +69,7 @@ public:
 		}
 
 		L2 = p->nextNode;
-		p->nextNode = NULL;
+		p->nextNode = nullptr;
 
 		result.L1 = L1;
 		result.L2 = L2;
@@ -76,12 +78,12 @@ public:
 	}
 
 	Node* merge(Node* L1, Node* L2) {
-		Node* result = NULL;
+		Node* result = nullptr;
 
-		if (L1 == NULL) {
+		if (L1 == nullptr) {
 			return L2;
 		}
-		else if (L2 == NULL) {
+		else if (L2 == nullptr) {
 			return L1;
 		}
 
