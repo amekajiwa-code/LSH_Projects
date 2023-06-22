@@ -1,20 +1,20 @@
 ﻿#include "Management.h"
-//PushFront 동작 고치기
+
 int main()
 {
 	LinkedList* list = new LinkedList();
 	MergeSort ms;
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		Node* newNode = list->CreateNode(i, i * 10);
 		list->PushFront(newNode);
 	}
-	ms.merge_sort(&list->headNode.nextNode, 5);
-	list->Save();
+	//ms.merge_sort(&list->headNode.nextNode, 10);
 	list->PrintNode();
+	list->Save();
+	delete list;
 	LinkedList* list2 = new LinkedList();
 	list2->Load();
 	list2->PrintNode();
-	delete list;
 	delete list2;
 }
 
@@ -160,15 +160,4 @@ void LinkedList::Load() {
 		}
 	}
 	fin.close();
-	//FILE* fp = nullptr;
-	////파일열기에 성공하면 0을 반환
-	//if (0 == fopen_s(&fp, "test.txt", "r")) {
-	//	//파일에 끝에 도달하면 1 반환s
-	//	while (feof(fp) != 1) {
-	//		Node* newNode = CreateNode(0, 0);
-	//		fscanf_s(fp, "%d %d\n", &newNode->id, &newNode->value);
-	//		PushBack(newNode);
-	//	}
-	//	fclose(fp);
-	//}
 }
