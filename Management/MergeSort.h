@@ -1,5 +1,5 @@
 #pragma once
-#include "Node.h"
+#include "LinkedList.h"
 
 class MergeSort {
 public:
