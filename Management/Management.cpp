@@ -1,5 +1,6 @@
 #include "Management.h"
-//고쳐야될것 : 병합정렬 매개변수인자 오류 lvalue nextNode private로 감췄을때 오류 발생함
+//고쳐야될것 : 병합정렬 매개변수인자 오류 lvalue 
+//nextNode private로 감췄을때 오류 발생함
 int main()
 {
 	LinkedList* list = new LinkedList();

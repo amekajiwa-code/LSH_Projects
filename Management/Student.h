@@ -6,6 +6,7 @@ using namespace std;
 class Student {
 public:
 	Student(string name, int id);
+
 	void SetScore(int kor, int eng, int mat);
 	void Print();
 	string GetName() const;

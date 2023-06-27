@@ -28,7 +28,7 @@ int Student::GetID() const {
 }
 
 
-int Student::Student::GetKor() const {
+int Student::GetKor() const {
 	return this->mKor;
 }
 
