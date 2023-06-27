@@ -73,7 +73,6 @@ void LinkedList::PrintNode() {
 }
 
 void LinkedList::DestroyNode() {
-	cout << "¼Ò¸êÀÚÈ£Ãâ" << endl;
 	Node* Node = headNode.GetNextNode();
 	while (Node != nullptr) {
 		Node = Node->GetNextNode();

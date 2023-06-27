@@ -21,6 +21,15 @@
     <ClInclude Include="MyStudent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MyManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMergeSort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFileIO.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyLinkedList.cpp">
@@ -30,6 +39,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MyStudent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFileIO.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMergeSort.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

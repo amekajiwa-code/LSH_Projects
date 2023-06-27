@@ -139,12 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MyFileIO.h" />
     <ClInclude Include="MyLinkedList.h" />
+    <ClInclude Include="MyManager.h" />
+    <ClInclude Include="MyMergeSort.h" />
     <ClInclude Include="MyStudent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MyFileIO.cpp" />
     <ClCompile Include="MyLinkedList.cpp" />
     <ClCompile Include="MyMain.cpp" />
+    <ClCompile Include="MyManager.cpp" />
+    <ClCompile Include="MyMergeSort.cpp" />
     <ClCompile Include="MyStudent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
