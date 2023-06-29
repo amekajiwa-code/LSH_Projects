@@ -94,12 +94,18 @@ void MyLinkedList<T>::PushFront(Node<T>* newNode) {
 
 template<typename T>
 void MyLinkedList<T>::DestroyNode() {
+	if (mHeadNode.mNextNode == nullptr) {
+		return;
+	}
 	Node<T>* node = mHeadNode.mNextNode;
 	while (node != nullptr) {
 		node = node->mNextNode;
 		delete node;
 		node = nullptr;
 	}
+	mHeadNode.mNextNode = nullptr;
+	mHeadNode.mPreNode = nullptr;
+	mTailNode = &mHeadNode;
 };
 
 template<typename T>

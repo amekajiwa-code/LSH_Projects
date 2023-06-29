@@ -44,17 +44,18 @@ int main() {
 		{
 		case Initialize: {
 			MenuClear();
-			cout << "Initialize..." << endl;
-			for (int i = 0; i < 5; ++i) {
+			list->DestroyNode();
+			ID = 0;
+			for (int i = 0; i < 10; ++i) {
 				MyStudent dummy("dummy", ID, 50 + i, 60 + i, 40 + i);
 				Node<MyStudent>* newNode = list->CreateNode(dummy, ID++);
 				list->PushFront(newNode);
 			}
+			cout << "데이터가 초기화 되었습니다." << endl;
 			break;
 		}
 		case Print: {
 			MenuClear();
-			cout << "Select Print" << endl;
 			Node<MyStudent>* node;
 			node = list->mHeadNode.mNextNode;
 			cout << left << setw(7) << "Name"
@@ -75,14 +76,14 @@ int main() {
 			Node<MyStudent>* findNode;
 			findNode = list->FindNode(input);
 			if (findNode != nullptr) {
-				cout << "Your Student : " << findNode->mData.PrintStudent() << endl;
+				cout << "검색된 학생 : " << findNode->mData.PrintStudent() << endl;
 			}
 			break;
 		}
 		case Save: {
 			MenuClear();
 			string fileName = "";
-			cout << "Save - FileName : ";
+			cout << "세이브 파일명 : ";
 			cin >> fileName;
 			string output = "";
 			Node<MyStudent>* node = list->mHeadNode.mNextNode;
@@ -101,15 +102,24 @@ int main() {
 		}
 		case Insert: {
 			MenuClear();
-			MyStudent dummy("dummy", ID, 50, 60, 40);
+			cout << "입력 순서 : 이름 국어 영어 수학 : ";
+			string name;
+			int kor, eng, mat;
+			cin >> name >> kor >> eng >> mat;
+			MyStudent dummy(name, ID, kor, eng, mat);
 			Node<MyStudent>* newNode = list->CreateNode(dummy, ID++);
-			list->PushFront(newNode);
+			cout << "삽입될 학생의 ID : " << endl;
+			int input = -1;
+			cin >> input;
+			Node<MyStudent>* findNode;
+			findNode = list->FindNode(input);
+			list->InsertNode(findNode, newNode);
 			break;
 		}
 		case Delete: {
 			MenuClear();
 			int input = -1;
-			cout << "Delete - Target ID : ";
+			cout << "삭제하고 싶은 학생의 ID : ";
 			cin >> input;
 			Node<MyStudent>* findNode = list->FindNode(input);
 			if (findNode != nullptr) {
@@ -120,19 +130,25 @@ int main() {
 		case Update: {
 			MenuClear();
 			int input = -1;
-			cout << "Update - Target ID : ";
+			cout << "입력 순서 : 이름 국어 영어 수학 : ";
+			string name;
+			int kor, eng, mat;
+			cin >> name >> kor >> eng >> mat;
+			MyStudent dummy(name, ID, kor, eng, mat);
+			cout << "수정하고 싶은 학생의 ID : ";
 			cin >> input;
 			Node<MyStudent>* findNode = list->FindNode(input);
 			if (findNode != nullptr) {
-				MyStudent dummy("dummy", ID, 50, 60, 40);
-				list->UpdateNode(findNode, dummy);
+				findNode->mData = dummy;
 			}
+			cout << "데이터가 수정되었습니다." << endl;
 			break;
 		}
 		case Sort: {
 			MenuClear();
 			MergeSort<MyStudent> ms;
 			ms.merge_sort(&list->mHeadNode.mNextNode, list->GetLength());
+			cout << "데이터가 정렬되었습니다." << endl;
 			break;
 		}
 		default: {
