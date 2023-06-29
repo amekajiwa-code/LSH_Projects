@@ -7,7 +7,7 @@ class MyStudent {
 public:
 	MyStudent();
 	MyStudent(string name, int id, int kor, int eng, int mat);
-	void PrintStudent();
+	string PrintStudent();
 private:
 	string mName;
 	int mID;

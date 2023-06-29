@@ -13,12 +13,14 @@ MyStudent::MyStudent(string name, int id, int kor, int eng, int mat) {
 	mAvg = mTot / 3.0f;
 };
 
-void MyStudent::PrintStudent() {
-	cout << mName << " "
-		<< mID << " "
-		<< mKor << " "
-		<< mEng << " "
-		<< mMat << " "
-		<< mTot << " "
-		<< mAvg << endl;
+string MyStudent::PrintStudent() {
+	string output = "";
+	output += mName + " ";
+	output += mID + " ";
+	output += mKor + " ";
+	output += mEng + " ";
+	output += mMat + " ";
+	output += mTot + " ";
+	output += mAvg;
+	return output;
 };

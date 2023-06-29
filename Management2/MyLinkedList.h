@@ -3,15 +3,18 @@
 template<typename T>
 class Node {
 public:
+	int mNID;
 	T mData;
 	Node* mNextNode;
 	Node* mPreNode;
 	Node() {
+		mNID = -1;
 		mNextNode = nullptr;
 		mPreNode = nullptr;
 	}
-	Node(T data)
+	Node(T data, int NID)
 	{
+		mNID = NID;
 		mData = data;
 		mNextNode = nullptr;
 		mPreNode = nullptr;
@@ -26,7 +29,7 @@ class MyLinkedList {
 public:
 	MyLinkedList();
 	~MyLinkedList();
-	Node<T>* CreateNode(T data);
+	Node<T>* CreateNode(T data, int NID);
 	Node<T>* FindNode(const T& searchData);
 	void PushFront(Node<T>* newNode);
 	void PushBack(Node<T>* newNode);
@@ -55,8 +58,8 @@ MyLinkedList<T>::~MyLinkedList() {
 };
 
 template<typename T>
-Node<T>* MyLinkedList<T>::CreateNode(T data) {
-	Node<T>* newNode = new Node<T>(data);
+Node<T>* MyLinkedList<T>::CreateNode(T data, int NID) {
+	Node<T>* newNode = new Node<T>(data, NID);
 	return newNode;
 };
 
