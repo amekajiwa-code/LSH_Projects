@@ -30,7 +30,7 @@ public:
 	MyLinkedList();
 	~MyLinkedList();
 	Node<T>* CreateNode(T data, int NID);
-	Node<T>* FindNode(const T& searchData);
+	Node<T>* FindNode(int id);
 	void PushFront(Node<T>* newNode);
 	void PushBack(Node<T>* newNode);
 	//void PrintNode(); <-- Student Å¬·¡½º°¡ ±â´ÉÇÔ
@@ -38,6 +38,7 @@ public:
 	void DeleteNode(Node<T>* target);
 	void InsertNode(Node<T>* targetNode, Node<T>* newNode);
 	void UpdateNode(Node<T>* Node, T newData);
+	int GetLength();
 	//¸â¹öº¯¼ö Ä¸½¶È­
 	Node<T> mHeadNode;
 	Node<T>* mTailNode;
@@ -102,13 +103,13 @@ void MyLinkedList<T>::DestroyNode() {
 };
 
 template<typename T>
-Node<T>* MyLinkedList<T>::FindNode(const T& searchData) {
+Node<T>* MyLinkedList<T>::FindNode(int id) {
 	Node<T>* node = mHeadNode.mNextNode;
 	while (node != nullptr) {
-		if (node->mData == searchData) {
+		if (node->mNID == id) {
 			return node;
 		}
-		node = nullptr;
+		node = node->mNextNode;
 	}
 	return nullptr;
 };
@@ -145,3 +146,14 @@ template<typename T>
 void MyLinkedList<T>::UpdateNode(Node<T>* node, T newData) {
 	node->mData = newData;
 };
+
+template<typename T>
+int MyLinkedList<T>::GetLength() {
+	int length = 0;
+	Node<T>* node = &mHeadNode;
+	while (node != nullptr) {
+		length++;
+		node = node->mNextNode;
+	}
+	return length;
+}

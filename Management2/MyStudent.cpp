@@ -13,14 +13,33 @@ MyStudent::MyStudent(string name, int id, int kor, int eng, int mat) {
 	mAvg = mTot / 3.0f;
 };
 
+string MyStudent::IntToString(int num) {
+	string result = "";
+	if (num == 0) {
+		result = "0";
+	}
+	else {
+		while (num > 0) {
+			char digitChar = (num % 10) + '0';
+			result.insert(0, 1, digitChar);
+			num /= 10;
+		}
+	}
+	return result;
+};
+
 string MyStudent::PrintStudent() {
 	string output = "";
-	output += mName + " ";
-	output += mID + " ";
-	output += mKor + " ";
-	output += mEng + " ";
-	output += mMat + " ";
-	output += mTot + " ";
-	output += mAvg;
+	output += mName + "  ";
+	output += IntToString(mID) + "    ";
+	output += IntToString(mKor) + "   ";
+	output += IntToString(mEng) + "   ";
+	output += IntToString(mMat) + "   ";
+	output += IntToString(mTot) + "  ";
+	output += IntToString(mAvg);
 	return output;
 };
+
+int MyStudent::GetID() {
+	return mID;
+}
