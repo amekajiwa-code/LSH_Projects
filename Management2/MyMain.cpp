@@ -1,5 +1,6 @@
-//1. 검색함수(삭제,수정으로 연계)
+//1. 검색함수(삭제,수정으로 연계) -> 거의 해결
 //2. 문자열 갈라서 Student 멤버변수에 넣는 함수(Load, Insert연계)
+//2.5 정렬할때 원본유지하기
 //3. 최종작업 클래스 분리
 #include <iostream>
 
@@ -27,14 +28,7 @@ inline void MenuClear()
 
 int main() {
 	MyLinkedList<MyStudent>* list = new MyLinkedList<MyStudent>;
-	Node<MyStudent>* node = nullptr;
-	Node<MyStudent>* findNode = nullptr;
 	int ID = 0;
-	int input = -1;
-	string fileName = "";
-	string output = "";
-	string searchData = "";
-	FileIO fo;
 	while (true) {
 		int select = -1;
 		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
@@ -42,10 +36,13 @@ int main() {
 		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
 		cin >> select;
 
-		if (select == Exit) break;
+		if (select == Exit) {
+			break;
+		}
+
 		switch (select)
 		{
-		case Initialize:
+		case Initialize: {
 			MenuClear();
 			cout << "Initialize..." << endl;
 			for (int i = 0; i < 5; ++i) {
@@ -54,63 +51,94 @@ int main() {
 				list->PushFront(newNode);
 			}
 			break;
-		case Print:
+		}
+		case Print: {
 			MenuClear();
 			cout << "Select Print" << endl;
+			Node<MyStudent>* node;
 			node = list->mHeadNode.mNextNode;
-			cout << left << setw(7) << "Name" 
-				<< setw(5) << "ID" << setw(5) << "Kor" 
-				<< setw(5) << "Eng" << setw(5) << "Mat" 
+			cout << left << setw(7) << "Name"
+				<< setw(5) << "ID" << setw(5) << "Kor"
+				<< setw(5) << "Eng" << setw(5) << "Mat"
 				<< setw(5) << "Tot" << setw(5) << "Avg" << endl;
 			while (node != nullptr) {
 				cout << left << node->mData.PrintStudent() << endl;
 				node = node->mNextNode;
 			}
 			break;
-		case Find:
+		}
+		case Find: {
 			MenuClear();
-			input = -1;
+			int input = -1;
 			cout << "Find - Target ID : ";
 			cin >> input;
+			Node<MyStudent>* findNode;
 			findNode = list->FindNode(input);
 			if (findNode != nullptr) {
 				cout << "Your Student : " << findNode->mData.PrintStudent() << endl;
 			}
 			break;
-		case Save:
+		}
+		case Save: {
 			MenuClear();
-			fileName = "";
+			string fileName = "";
 			cout << "Save - FileName : ";
 			cin >> fileName;
-			output = "";
-			node = list->mHeadNode.mNextNode;
+			string output = "";
+			Node<MyStudent>* node = list->mHeadNode.mNextNode;
 			while (node != nullptr) {
 				output += node->mData.PrintStudent();
 				output += "\n";
 				node = node->mNextNode;
 			}
+			FileIO fo;
 			fo.SaveFile(fileName, output);
 			break;
-		case Load:
+		}
+		case Load: {
 			MenuClear();
 			break;
-		case Insert:
+		}
+		case Insert: {
 			MenuClear();
+			MyStudent dummy("dummy", ID, 50, 60, 40);
+			Node<MyStudent>* newNode = list->CreateNode(dummy, ID++);
+			list->PushFront(newNode);
 			break;
-		case Delete:
+		}
+		case Delete: {
 			MenuClear();
+			int input = -1;
+			cout << "Delete - Target ID : ";
+			cin >> input;
+			Node<MyStudent>* findNode = list->FindNode(input);
+			if (findNode != nullptr) {
+				list->DeleteNode(findNode);
+			}
 			break;
-		case Update:
+		}
+		case Update: {
 			MenuClear();
+			int input = -1;
+			cout << "Update - Target ID : ";
+			cin >> input;
+			Node<MyStudent>* findNode = list->FindNode(input);
+			if (findNode != nullptr) {
+				MyStudent dummy("dummy", ID, 50, 60, 40);
+				list->UpdateNode(findNode, dummy);
+			}
 			break;
-		case Sort:
+		}
+		case Sort: {
 			MenuClear();
 			MergeSort<MyStudent> ms;
 			ms.merge_sort(&list->mHeadNode.mNextNode, list->GetLength());
 			break;
-		default:
+		}
+		default: {
 			MenuClear();
 			break;
+		}
 		}
 	}
 	
