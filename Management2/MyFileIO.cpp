@@ -26,6 +26,10 @@ string FileIO::LoadFile(string fileName) {
 			fin >> trash;
 		}
 	}
+	else {
+		fin.close();
+		return "failed";
+	}
 	fin.close();
 
 	return output;

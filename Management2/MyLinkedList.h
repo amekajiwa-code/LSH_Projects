@@ -29,6 +29,7 @@ class MyLinkedList {
 public:
 	MyLinkedList();
 	~MyLinkedList();
+	MyLinkedList(const MyLinkedList& other);
 	Node<T>* CreateNode(T data, int NID);
 	Node<T>* FindNode(int id);
 	void PushFront(Node<T>* newNode);
@@ -57,6 +58,11 @@ template<typename T>
 MyLinkedList<T>::~MyLinkedList() {
 	void DestroyNode();
 };
+
+template<typename T>
+MyLinkedList<T>::MyLinkedList(const MyLinkedList<T>& other) {
+
+}
 
 template<typename T>
 Node<T>* MyLinkedList<T>::CreateNode(T data, int NID) {

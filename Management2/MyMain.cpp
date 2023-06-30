@@ -31,7 +31,7 @@ int main() {
 	while (true) {
 		int select = -1;
 		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "Initialize = 0 Print = 1 Find = 2 Save = 3 Load = 4 Insert = 5 Delete = 6 Update = 7 Sort = 8 Exit = 99" << endl;
+		cout << "초기화 = 0 출력 = 1 검색 = 2 저장 = 3 불러오기 = 4 삽입 = 5 삭제 = 6 수정 = 7 정렬 = 8 Exit = 99" << endl;
 		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
 		cin >> select;
 
@@ -77,6 +77,9 @@ int main() {
 			if (findNode != nullptr) {
 				cout << "검색된 학생 : " << findNode->mData.PrintStudent() << endl;
 			}
+			else {
+				cout << "검색된 학생이 없습니다." << endl;
+			}
 			break;
 		}
 		case Save: {
@@ -106,6 +109,10 @@ int main() {
 			cin >> fileName;
 			FileIO fi;
 			string text = fi.LoadFile(fileName);
+			if (text == "failed") {
+				cout << "파일 읽어오는데 실패했습니다." << endl;
+				continue;
+			}
 			string member = "";
 			string buffer = "";
 			int spaceCounter = 0;
@@ -200,6 +207,9 @@ int main() {
 				if (findNode != nullptr) {
 					list->InsertNode(findNode, newNode);
 				}
+				else {
+					cout << "검색된 학생이 없습니다." << endl;
+				}
 				break;
 			}
 			default:
@@ -217,6 +227,9 @@ int main() {
 			if (findNode != nullptr) {
 				list->DeleteNode(findNode);
 			}
+			else {
+				cout << "검색된 학생이 없습니다." << endl;
+			}
 			break;
 		}
 		case Update: {
@@ -232,6 +245,9 @@ int main() {
 			Node<MyStudent>* findNode = list->FindNode(input);
 			if (findNode != nullptr) {
 				findNode->mData = dummy;
+			}
+			else {
+				cout << "검색된 학생이 없습니다." << endl;
 			}
 			cout << "데이터가 수정되었습니다." << endl;
 			break;
