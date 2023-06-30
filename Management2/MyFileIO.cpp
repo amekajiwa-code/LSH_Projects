@@ -11,13 +11,15 @@ void FileIO::SaveFile(string fileName, string input) {
 
 string FileIO::LoadFile(string fileName) {
 	ifstream fin;
-	string output;
+	string output = "";
 	fin.open(fileName);
 	if (fin.is_open()) {
 		string trash;
 		while (!fin.eof()) {
 			if (!fin.fail()) {
-				fin >> output;
+				string temp;
+				fin >> temp;
+				output += temp + " ";
 				continue;
 			}
 			fin.clear();
