@@ -9,7 +9,6 @@ public:
 	MyStudent();
 	MyStudent(string name, int id, int kor, int eng, int mat);
 	string PrintStudent();
-	string IntToString(int num);
 	int GetID();
 private:
 	string mName;

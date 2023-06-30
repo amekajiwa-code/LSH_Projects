@@ -1,6 +1,5 @@
-//1. 검색함수(삭제,수정으로 연계) -> 거의 해결
-//2. 문자열 갈라서 Student 멤버변수에 넣는 함수(Load, Insert연계)
-//2.5 정렬할때 원본유지하기
+//2 로드기능 완성
+//2.5 정렬할때 원본유지하기 (연결리스트 -> 일반배열로 복사후 정렬)
 //3. 최종작업 클래스 분리
 #include <iostream>
 
@@ -58,10 +57,10 @@ int main() {
 			MenuClear();
 			Node<MyStudent>* node;
 			node = list->mHeadNode.mNextNode;
-			cout << left << setw(7) << "Name"
-				<< setw(5) << "ID" << setw(5) << "Kor"
-				<< setw(5) << "Eng" << setw(5) << "Mat"
-				<< setw(5) << "Tot" << setw(5) << "Avg" << endl;
+			cout << left << setw(5) << "Name"
+				<< setw(3) << "ID" << setw(3) << "Kor"
+				<< setw(3) << "Eng" << setw(3) << "Mat"
+				<< setw(3) << "Tot" << setw(3) << "Avg" << endl;
 			while (node != nullptr) {
 				cout << left << node->mData.PrintStudent() << endl;
 				node = node->mNextNode;
@@ -108,12 +107,35 @@ int main() {
 			cin >> name >> kor >> eng >> mat;
 			MyStudent dummy(name, ID, kor, eng, mat);
 			Node<MyStudent>* newNode = list->CreateNode(dummy, ID++);
-			cout << "삽입될 학생의 ID : " << endl;
-			int input = -1;
-			cin >> input;
-			Node<MyStudent>* findNode;
-			findNode = list->FindNode(input);
-			list->InsertNode(findNode, newNode);
+
+			cout << "입력 방법 : 1. 후위 2. 전위. 3. 중간삽입 : ";
+			int inputOption = -1;
+			cin >> inputOption;
+			switch (inputOption)
+			{
+			case 1: {
+				list->PushBack(newNode);
+				break;
+			}
+			case 2: {
+				list->PushFront(newNode);
+				break;
+			}
+			case 3: {
+				cout << "삽입될 학생의 ID : " << endl;
+				int inputID = -1;
+				cin >> inputID;
+				Node<MyStudent>* findNode;
+				findNode = list->FindNode(inputID);
+				if (findNode != nullptr) {
+					list->InsertNode(findNode, newNode);
+				}
+				break;
+			}
+			default:
+				break;
+			}
+
 			break;
 		}
 		case Delete: {

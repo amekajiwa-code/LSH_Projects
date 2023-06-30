@@ -144,6 +144,7 @@
     <ClInclude Include="MyManager.h" />
     <ClInclude Include="MyMergeSort.h" />
     <ClInclude Include="MyStudent.h" />
+    <ClInclude Include="MyUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyFileIO.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="MyManager.cpp" />
     <ClCompile Include="MyMergeSort.cpp" />
     <ClCompile Include="MyStudent.cpp" />
+    <ClCompile Include="MyUtility.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
