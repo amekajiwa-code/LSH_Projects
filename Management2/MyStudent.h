@@ -9,7 +9,14 @@ public:
 	MyStudent();
 	MyStudent(string name, int id, int kor, int eng, int mat);
 	string PrintStudent();
-	int GetID();
+	int GetID() const;
+	string GetName() const;
+	int GetKorScore() const;
+	int GetEngScore() const;
+	int GetMatScore() const;
+	int GetTotalScore() const;
+	float GetAverageScore() const;
+
 private:
 	string mName;
 	int mID;

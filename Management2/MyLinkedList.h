@@ -7,11 +7,13 @@ public:
 	T mData;
 	Node* mNextNode;
 	Node* mPreNode;
+
 	Node() {
 		mNID = -1;
 		mNextNode = nullptr;
 		mPreNode = nullptr;
 	}
+
 	Node(T data, int NID)
 	{
 		mNID = NID;
@@ -19,6 +21,24 @@ public:
 		mNextNode = nullptr;
 		mPreNode = nullptr;
 	}
+
+	Node(const Node& other) {
+		mNID = other.mNID;
+		mData = other.mData;
+		mNextNode = nullptr;
+		mPreNode = nullptr;
+	}
+
+	Node& operator=(const Node& other) {
+		if (this != &other) {
+			mNID = other.mNID;
+			mData = other.mData;
+			mNextNode = nullptr;
+			mPreNode = nullptr;
+		}
+		return *this;
+	}
+
 	virtual ~Node()
 	{
 	}
@@ -128,8 +148,13 @@ Node<T>* MyLinkedList<T>::FindNode(int id) {
 
 template<typename T>
 void MyLinkedList<T>::DeleteNode(Node<T>* target) {
-	target->mPreNode->mNextNode = target->mNextNode;
-	target->mNextNode->mPreNode = target->mPreNode;
+	if (target->mNextNode == nullptr) {
+		target->mPreNode->mNextNode = nullptr;
+	}
+	else {
+		target->mPreNode->mNextNode = target->mNextNode;
+		target->mNextNode->mPreNode = target->mPreNode;
+	}
 	delete target;
 	target = nullptr;
 };

@@ -1,4 +1,3 @@
-//2.5 정렬할때 원본유지하기 (연결리스트 -> 일반배열로 복사후 정렬)
 //3. 최종작업 클래스 분리
 //4. 잘못된 입력들어왔을때 처리
 #include <iostream>
@@ -30,10 +29,28 @@ int main() {
 	int ID = 0;
 	while (true) {
 		int select = -1;
-		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "초기화 = 0 출력 = 1 검색 = 2 저장 = 3 불러오기 = 4 삽입 = 5 삭제 = 6 수정 = 7 정렬 = 8 Exit = 99" << endl;
-		cout << "----------------------------------------------------------------------------------------------------------------" << endl;
-		cin >> select;
+		cout << left << setw(30) << setfill(' ') << "" << endl;
+		cout << setw(10) << "초기화" << setw(5) << "0";
+		cout << setw(10) << "출력" << setw(5) << "1";
+		cout << setw(10) << "검색" << setw(5) << "2" << endl;
+		cout << setw(10) << "저장" << setw(5) << "3";
+		cout << setw(10) << "불러오기" << setw(5) << "4";
+		cout << setw(10) << "삽입" << setw(5) << "5" << endl;
+		cout << setw(10) << "삭제" << setw(5) << "6";
+		cout << setw(10) << "수정" << setw(5) << "7";
+		cout << setw(10) << "정렬" << setw(5) << "8" << endl;
+		cout << setw(10) << "Exit" << setw(5) << "99" << endl;
+		cout << left << setw(30) << setfill(' ') << "" << endl;
+		
+		while (!(cin >> select)) {
+			cin.clear();
+			while (cin.get() != '\n') {
+				if (cin.bad()) {
+					cin.clear();
+				}
+			}
+			cout << "잘못된 입력입니다. 다시 입력하세요: ";
+		}
 
 		if (select == Exit) {
 			break;
@@ -57,14 +74,20 @@ int main() {
 			MenuClear();
 			Node<MyStudent>* node;
 			node = list->mHeadNode.mNextNode;
-			cout << left << setw(5) << "Name"
-				<< setw(3) << "ID" << setw(3) << "Kor"
-				<< setw(3) << "Eng" << setw(3) << "Mat"
-				<< setw(3) << "Tot" << setw(3) << "Avg" << endl;
+			cout << left << setw(10) << "Name"
+				<< setw(5) << "ID" << setw(5) << "Kor"
+				<< setw(5) << "Eng" << setw(5) << "Mat"
+				<< setw(5) << "Tot" << setw(5) << "Avg" << endl;
+
 			while (node != nullptr) {
-				cout << left << node->mData.PrintStudent() << endl;
+				cout << left << setw(10) << node->mData.GetName()
+					<< setw(5) << node->mData.GetID() << setw(5) << node->mData.GetKorScore()
+					<< setw(5) << node->mData.GetEngScore() << setw(5) << node->mData.GetMatScore()
+					<< setw(5) << node->mData.GetTotalScore() << setw(5) << node->mData.GetAverageScore() << endl;
+
 				node = node->mNextNode;
 			}
+
 			break;
 		}
 		case Find: {
@@ -226,6 +249,7 @@ int main() {
 			Node<MyStudent>* findNode = list->FindNode(input);
 			if (findNode != nullptr) {
 				list->DeleteNode(findNode);
+				cout << "데이터가 삭제되었습니다." << endl;
 			}
 			else {
 				cout << "검색된 학생이 없습니다." << endl;
@@ -254,9 +278,35 @@ int main() {
 		}
 		case Sort: {
 			MenuClear();
+			MyLinkedList<MyStudent>* list2 = new MyLinkedList<MyStudent>;
+			Node<MyStudent>* node = list->mHeadNode.mNextNode;
+			while (node != nullptr) {
+				Node<MyStudent>* tempNode = new Node<MyStudent>(*node);
+				list2->PushBack(tempNode);
+				node = node->mNextNode;
+			}
 			MergeSort<MyStudent> ms;
-			ms.merge_sort(&list->mHeadNode.mNextNode, list->GetLength());
+			ms.merge_sort(&list2->mHeadNode.mNextNode, list2->GetLength());
 			cout << "데이터가 정렬되었습니다." << endl;
+			
+			Node<MyStudent>* node2;
+			node2 = list2->mHeadNode.mNextNode;
+			cout << left << setw(10) << "Name"
+				<< setw(5) << "ID" << setw(5) << "Kor"
+				<< setw(5) << "Eng" << setw(5) << "Mat"
+				<< setw(5) << "Tot" << setw(5) << "Avg" << endl;
+
+			while (node2 != nullptr) {
+				cout << left << setw(10) << node2->mData.GetName()
+					<< setw(5) << node2->mData.GetID() << setw(5) << node2->mData.GetKorScore()
+					<< setw(5) << node2->mData.GetEngScore() << setw(5) << node2->mData.GetMatScore()
+					<< setw(5) << node2->mData.GetTotalScore() << setw(5) << node2->mData.GetAverageScore() << endl;
+
+				node2 = node2->mNextNode;
+			}
+
+			delete list2;
+			list2 = nullptr;
 			break;
 		}
 		default: {

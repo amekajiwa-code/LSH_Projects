@@ -27,6 +27,30 @@ string MyStudent::PrintStudent() {
 	return output;
 };
 
-int MyStudent::GetID() {
+int MyStudent::GetID() const {
 	return mID;
+}
+
+std::string MyStudent::GetName() const {
+	return mName;
+}
+
+int MyStudent::GetKorScore() const {
+	return mKor;
+}
+
+int MyStudent::GetEngScore() const {
+	return mEng;
+}
+
+int MyStudent::GetMatScore() const {
+	return mMat;
+}
+
+int MyStudent::GetTotalScore() const {
+	return mTot;
+}
+
+float MyStudent::GetAverageScore() const {
+	return mAvg;
 }
