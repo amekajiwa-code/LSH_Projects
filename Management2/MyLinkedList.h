@@ -54,7 +54,6 @@ public:
 	Node<T>* FindNode(int id);
 	void PushFront(Node<T>* newNode);
 	void PushBack(Node<T>* newNode);
-	//void PrintNode(); <-- Student 클래스가 기능함
 	void DestroyNode();
 	void DeleteNode(Node<T>* target);
 	void InsertNode(Node<T>* targetNode, Node<T>* newNode);
