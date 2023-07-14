@@ -1,13 +1,14 @@
 #include <iostream>
-using namespace std;
-template <typename T>
+#include <vector>
 
-T add(T x, T y) {
-	return x + y;
-}
+using namespace std;
 
 int main() {
-	char* name = new char;
-	cin >> name;
-	cout << name;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+
+
+    return 0;
 }
