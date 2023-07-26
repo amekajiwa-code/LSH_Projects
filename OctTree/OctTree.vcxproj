@@ -145,6 +145,7 @@
     <ClCompile Include="Octree.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
