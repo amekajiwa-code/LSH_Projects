@@ -18,23 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="Quadrant.h" />
-    <ClInclude Include="Rect.h" />
-    <ClInclude Include="Timer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Point.cpp" />
-    <ClCompile Include="Quadrant.cpp" />
-    <ClCompile Include="Rect.cpp" />
-    <ClCompile Include="Timer.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ab8e2ccd-cb11-454d-966c-b0411dbd4e27}</ProjectGuid>
-    <RootNamespace>QuadTree</RootNamespace>
+    <ProjectGuid>{38bf65ae-925b-48f1-8313-92b0564fc57f}</ProjectGuid>
+    <RootNamespace>OctTree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -150,6 +138,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Sample.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
