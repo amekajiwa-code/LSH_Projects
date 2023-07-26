@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Octree.cpp" />
     <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Octree.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

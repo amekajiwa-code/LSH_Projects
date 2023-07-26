@@ -22,13 +22,11 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="Quadrant.h" />
     <ClInclude Include="Rect.h" />
-    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Quadrant.cpp" />
     <ClCompile Include="Rect.cpp" />
-    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
