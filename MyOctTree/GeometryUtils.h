@@ -1,7 +1,7 @@
 #ifndef GEOMETRY_UTILS_H
 #define GEOMETRY_UTILS_H
 
-class Point3D {
+class Vector3 {
 private:
     union {
         struct {
@@ -10,17 +10,17 @@ private:
         double v[3];
     };
 public:
-    Point3D() : mX(0), mY(0), mZ(0) {}
-    Point3D(double x, double y, double z);
-    Point3D(const Point3D& other);
+    Vector3() : mX(0), mY(0), mZ(0) {}
+    Vector3(double x, double y, double z);
+    Vector3(const Vector3& other);
 
-    bool operator==(const Point3D& other) const;
-    bool operator!=(const Point3D& other) const;
-    Point3D operator+(const Point3D& other) const;
-    Point3D operator-(const Point3D& other) const;
-    Point3D operator*(double scalar) const;
-    Point3D operator/(double scalar) const;
-    Point3D& operator=(const Point3D& other);
+    bool operator==(const Vector3& other) const;
+    bool operator!=(const Vector3& other) const;
+    Vector3 operator+(const Vector3& other) const;
+    Vector3 operator-(const Vector3& other) const;
+    Vector3 operator*(double scalar) const;
+    Vector3 operator/(double scalar) const;
+    Vector3& operator=(const Vector3& other);
 
     double getX() const { return mX; }
     double getY() const { return mY; }
@@ -29,18 +29,21 @@ public:
 
 class Box {
 private:
-    Point3D mFrontTopLeft;
-    Point3D mFrontTopRight;
-    Point3D mFrontBottomLeft;
-    Point3D mFrontBottomRight;
-    Point3D mBackTopLeft;
-    Point3D mBackTopRight;
-    Point3D mBackBottomLeft;
-    Point3D mBackBottomRight;
+    Vector3 mFrontTopLeft;
+    Vector3 mFrontTopRight;
+    Vector3 mFrontBottomLeft;
+    Vector3 mFrontBottomRight;
+    Vector3 mBackTopLeft;
+    Vector3 mBackTopRight;
+    Vector3 mBackBottomLeft;
+    Vector3 mBackBottomRight;
     double mWidth, mHeight, mDepth;
 public:
-    Box(const Point3D& frontTopLeft,
-        const Point3D& backBottomRight,
+    Box() {
+        mWidth = 0, mHeight = 0, mDepth = 0;
+    };
+    Box(const Vector3& frontTopLeft,
+        const Vector3& backBottomRight,
         double width, double height, double depth);
 };
 

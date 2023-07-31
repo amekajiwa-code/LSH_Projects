@@ -140,9 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GeometryUtils.h" />
+    <ClInclude Include="MyQuadrant.h" />
+    <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeometryUtils.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyQuadrant.cpp" />
+    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
