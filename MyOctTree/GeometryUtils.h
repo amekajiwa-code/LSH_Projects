@@ -28,7 +28,7 @@ public:
 };
 
 class Box {
-private:
+public:
     Vector3 mFrontTopLeft;
     Vector3 mFrontTopRight;
     Vector3 mFrontBottomLeft;
@@ -38,7 +38,7 @@ private:
     Vector3 mBackBottomLeft;
     Vector3 mBackBottomRight;
     double mWidth, mHeight, mDepth;
-public:
+
     Box() {
         mWidth = 0, mHeight = 0, mDepth = 0;
     };

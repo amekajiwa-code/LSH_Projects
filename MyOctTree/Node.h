@@ -5,18 +5,25 @@
 class Node
 {
 public:
-	int mId = -1;
-	int mDepth = 0;
+	int mId;
+	int mDepth;
 	Node* mParent = nullptr;
 	std::vector<Node*> mChildNodes;
 	Box mBox;
 
-	Node() {};
+	Node() {
+		mId = -1, mDepth = -1;
+	};
 	Node(Node* parent, Box box, int id) {
-		mId = id;
 		mParent = parent;
+		mId = id;
 		mBox = box;
-		mDepth = parent->mDepth++;
+		if (parent != nullptr) {
+			mDepth = parent->mDepth + 1;
+		}
+		else {
+			mDepth = 0;
+		}
 	};
 	~Node() {
 		//delete
