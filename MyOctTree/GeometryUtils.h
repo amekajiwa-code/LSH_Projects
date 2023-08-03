@@ -1,8 +1,10 @@
 #ifndef GEOMETRY_UTILS_H
 #define GEOMETRY_UTILS_H
 
+#include <cmath>
+
 class Vector3 {
-private:
+public:
     union {
         struct {
             double mX, mY, mZ;
@@ -25,6 +27,15 @@ public:
     double getX() const { return mX; }
     double getY() const { return mY; }
     double getZ() const { return mZ; }
+
+    void Normalize() {
+        float length = std::sqrt(mX * mX + mY * mY + mZ * mZ);
+        if (length != 0.0f) {
+            mX /= length;
+            mY /= length;
+            mZ /= length;
+        }
+    }
 };
 
 class Box {
@@ -45,6 +56,22 @@ public:
     Box(const Vector3& frontTopLeft,
         const Vector3& backBottomRight,
         double width, double height, double depth);
+
+    void Set(const Vector3& frontTopLeft,
+        const Vector3& backBottomRight,
+        double width, double height, double depth) {
+        mFrontTopLeft = frontTopLeft;
+        mFrontTopRight = Vector3(backBottomRight.getX(), frontTopLeft.getY(), frontTopLeft.getZ());
+        mFrontBottomLeft = Vector3(frontTopLeft.getX(), backBottomRight.getY(), frontTopLeft.getZ());
+        mFrontBottomRight = Vector3(backBottomRight.getX(), backBottomRight.getY(), frontTopLeft.getZ());
+        mBackTopLeft = Vector3(frontTopLeft.getX(), frontTopLeft.getY(), backBottomRight.getZ());
+        mBackTopRight = Vector3(backBottomRight.getX(), frontTopLeft.getY(), backBottomRight.getZ());
+        mBackBottomLeft = Vector3(frontTopLeft.getX(), backBottomRight.getY(), backBottomRight.getZ());
+        mBackBottomRight = backBottomRight;
+        mWidth = width;
+        mHeight = height;
+        mDepth = depth;
+    }
 };
 
 #endif

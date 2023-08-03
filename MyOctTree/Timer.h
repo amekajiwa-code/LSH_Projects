@@ -16,4 +16,3 @@ public:
 	bool Render();
 	bool Release();
 };
-

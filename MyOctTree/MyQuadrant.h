@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.h"
+#include "MyObject.h"
 #include <iostream>
 #include <queue>
 using namespace std;
