@@ -3,7 +3,7 @@
 
 using namespace std;
 
-StaticObject CreateStaticObject() {
+MyObject CreateObject() {
     const int numObjects = 10;
     const int maxCoordX = 800;
     const int maxCoordY = 600;
@@ -16,23 +16,7 @@ StaticObject CreateStaticObject() {
     Vector3 randPos(randX, randY, randZ);
     Box randBox(randPos, Vector3(randX + 10, randY + 10, randZ + 10), 10, 10, 10);
 
-    return StaticObject(randBox, randPos);
-}
-
-DynamicObject CreateDynamicObject() {
-    const int numObjects = 10;
-    const int maxCoordX = 800;
-    const int maxCoordY = 600;
-    const int maxCoordZ = 100;
-
-    double randX = static_cast<double>(std::rand() % maxCoordX);
-    double randY = static_cast<double>(std::rand() % maxCoordY);
-    double randZ = static_cast<double>(std::rand() % maxCoordZ);
-
-    Vector3 randPos(randX, randY, randZ);
-    Box randBox(randPos, Vector3(randX + 10, randY + 10, randZ + 10), 10, 10, 10);
-
-    return DynamicObject(randBox, randPos);
+    return MyObject(randBox, randPos);
 }
 
 int main() {
@@ -42,6 +26,10 @@ int main() {
 	MyQuadrant* myTree = new MyQuadrant(frontTopLeft, backBottomRight, width, height, depth);
 
 	myTree->BuildTree();
+
+    for (int i = 0; i < 10; ++i) {
+        myTree->rootNode->AddObject(CreateObject());
+    }
 
 	delete myTree;
 }

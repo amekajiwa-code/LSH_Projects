@@ -1,14 +1,7 @@
 #pragma once
 #include "GeometryUtils.h"
 
-// 인터페이스를 정의하는 추상 클래스
-class IMovable {
-public:
-	virtual void Move(float second) = 0; // 순수 가상 함수로 인터페이스 정의
-	virtual ~IMovable() {}   // 가상 소멸자를 추가하여 추상 클래스로 만듦
-};
-
-class MyObject : public IMovable
+class MyObject
 {
 public:
     float speed = 100.0f;
@@ -29,18 +22,11 @@ public:
         mDirection.Normalize();
     }
 
-	// IMovable 인터페이스의 Move 함수를 순수 가상 함수로 선언
-	virtual void Move(float second) = 0;
-};
-
-class StaticObject : public MyObject {
-public:
-    StaticObject(Box box, Vector3 pos) : MyObject(box, pos) {}
-
-    // MyObject의 Move 함수를 오버라이드하여 정적인 움직임을 구현
-    virtual void Move(float second) override {
-        // 정적인 움직임에 관한 구현
+    Box GetBox() {
+        return mObject;
     }
+
+    virtual void Move(float second) {};
 };
 
 class DynamicObject : public MyObject {

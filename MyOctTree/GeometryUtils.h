@@ -29,7 +29,7 @@ public:
     double getZ() const { return mZ; }
 
     void Normalize() {
-        float length = std::sqrt(mX * mX + mY * mY + mZ * mZ);
+        double length = std::sqrt(mX * mX + mY * mY + mZ * mZ);
         if (length != 0.0f) {
             mX /= length;
             mY /= length;
