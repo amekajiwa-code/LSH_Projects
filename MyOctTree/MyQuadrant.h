@@ -38,7 +38,7 @@ public:
 			nodeQueue.pop();
 
 			// Process the current node (show its vector)
-			ShowVector(currentNode);
+			//ShowVector(currentNode);
 
 			// Add child nodes to the queue
 			for (int i = 0; i < currentNode->mChildNodes.size(); i++) {

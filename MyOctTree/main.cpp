@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MyQuadrant.h"
+#include "Timer.h"
 
 using namespace std;
 
@@ -19,6 +20,13 @@ MyObject CreateObject() {
     return MyObject(randBox, randPos);
 }
 
+void Update(Timer timer) {
+    system("cls");
+    timer.Frame();
+    cout << "FPS : " << timer.GetFPS() << endl;
+    Sleep(100);
+}
+
 int main() {
 	Vector3 frontTopLeft(0.0f, 0.0f, 0.0f);
 	Vector3 backBottomRight(800.0f, 600.0f, 100.0f);
@@ -29,6 +37,12 @@ int main() {
 
     for (int i = 0; i < 10; ++i) {
         myTree->rootNode->AddObject(CreateObject());
+    }
+
+    Timer timer;
+    timer.Init();
+    while (true) {
+        Update(timer);
     }
 
 	delete myTree;

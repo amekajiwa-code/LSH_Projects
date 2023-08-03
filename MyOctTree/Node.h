@@ -72,8 +72,6 @@ public:
 		}
 		else {
 			// 충돌하지 않으면 오브젝트를 mObjectList에 추가합니다.
-
-			std::cout << "노드ID : " << mId << " / 오브젝트 크기: " << obj.GetBox().mWidth << ", " << obj.GetBox().mHeight << std::endl;
 			mObjectList.push_back(obj);
 		}
 	}
