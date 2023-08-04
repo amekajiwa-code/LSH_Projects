@@ -11,7 +11,7 @@ public:
 	Node* mParent = nullptr;
 	std::vector<Node*> mChildNodes;
 	Box mBox;
-	std::vector<MyObject> mObjectList;
+	std::vector<DynamicObject> mObjectList;
 
 	Node() {
 		mId = -1, mDepth = -1;
@@ -58,7 +58,7 @@ public:
 		mChildNodes.push_back(node);
 	}
 
-	void AddObject(MyObject obj) {
+	void AddObject(DynamicObject obj) {
 		// 현재 노드의 박스와 오브젝트의 박스가 충돌하는지 검사
 		// 충돌 조건을 설정해야 합니다. 여기서는 AABB 충돌 테스트를 사용합니다.
 		if (CheckCollision(obj.GetBox(), mBox)) {
@@ -66,8 +66,10 @@ public:
 			// 현재 노드의 박스와 오브젝트의 박스가 충돌하면
 			// 노드의 자식 노드에 추가하도록 합니다.
 			for (Node* child : mChildNodes) {
-				child->AddObject(obj);
-				return;
+				if (CheckCollision(obj.GetBox(), child->mBox)) {
+					child->AddObject(obj);
+					return;
+				}
 			}
 		}
 		else {

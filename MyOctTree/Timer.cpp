@@ -1,16 +1,18 @@
 #include "Timer.h"
 
 bool Timer::Init() {
-	mSecondPerFrame = 0.0f;
+	mFramePerSecond = 0.0f;
 	mTimer = 0.0f;
+	mSecondPerFrame = 0.0f;
 	mBeforeTime = timeGetTime();
-	return false;
+	mFPS = 0.0f;
+	return true;
 }
 
 int   Timer::GetFPS()
 {
 	static int FPS = 0;
-	if (mSecondPerFrame >= 1.0f)
+	if (mFramePerSecond >= 1.0f)
 	{
 		mFPS = FPS;
 		FPS = 0;
@@ -26,13 +28,16 @@ bool Timer::Frame() {
 	mSecondPerFrame = elapseTime / 1000.0f;
 	mTimer += mSecondPerFrame;
 	mBeforeTime = currentTime;
-	return false;
+
+	mFramePerSecond += mSecondPerFrame;
+	return true;
 }
 
 bool Timer::Render() {
-	return 0;
+	std::cout << "[FPS]" << GetFPS() << " [경과]" << mTimer << " [프레임당 시간]" << mSecondPerFrame << std::endl;
+	return true;
 }
 
 bool Timer::Release() {
-	return 0;
+	return true;
 }

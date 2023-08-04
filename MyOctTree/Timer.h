@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <windows.h>
 #pragma comment (lib, "Winmm.lib")
 
