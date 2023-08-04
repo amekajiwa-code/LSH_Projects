@@ -58,8 +58,8 @@ public:
         double width, double height, double depth);
 
     void Set(const Vector3& frontTopLeft,
-        const Vector3& backBottomRight,
         double width, double height, double depth) {
+        Vector3 backBottomRight(frontTopLeft.mX + width, frontTopLeft.mY + height, frontTopLeft.mZ + depth);
         mFrontTopLeft = frontTopLeft;
         mFrontTopRight = Vector3(backBottomRight.getX(), frontTopLeft.getY(), frontTopLeft.getZ());
         mFrontBottomLeft = Vector3(frontTopLeft.getX(), backBottomRight.getY(), frontTopLeft.getZ());

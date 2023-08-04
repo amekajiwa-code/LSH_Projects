@@ -37,9 +37,7 @@ public:
     virtual void Move(float second) override {
         Vector3 velocity = mDirection * speed * second;
         mPosition = mPosition + velocity;
-        Vector3 sizeVec(mObject.mWidth, mObject.mHeight, mObject.mDepth);
-        Vector3 endPosVec = mPosition + sizeVec;
-        mObject.Set(mPosition, endPosVec, mObject.mWidth, mObject.mHeight, mObject.mDepth);
+        mObject.Set(mPosition, mObject.mWidth, mObject.mHeight, mObject.mDepth);
 
         // 화면 경계에 도달하면 이동 방향을 반대로 바꾸어 반사되도록 합니다.
         if (mPosition.mX < 0.0f || mPosition.mX > 800.0f) {
