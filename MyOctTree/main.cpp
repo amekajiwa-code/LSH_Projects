@@ -30,7 +30,9 @@ int main() {
 	myTree->BuildTree();
 
     for (int i = 0; i < 8; ++i) {
-        const DynamicObject& obj = DynamicCreateObject();
+        DynamicObject obj = DynamicCreateObject();
+        Vector3 target(0, 0, 0);
+        obj.SetDirection(target);
         myTree->rootNode->AddObject(obj);
         dynamicObjList.push_back(obj);
     }
@@ -56,7 +58,7 @@ int main() {
             }
         
 
-        Sleep(100);
+        Sleep(500);
     }
 
 	delete myTree;
