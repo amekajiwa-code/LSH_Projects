@@ -4,6 +4,22 @@
 
 using namespace std;
 
+MyObject CreateObject() {
+    const int numObjects = 10;
+    const int maxCoordX = 800;
+    const int maxCoordY = 600;
+    const int maxCoordZ = 100;
+
+    double randX = static_cast<double>(std::rand() % (maxCoordX));
+    double randY = static_cast<double>(std::rand() % (maxCoordY));
+    double randZ = static_cast<double>(std::rand() % (maxCoordZ));
+
+    Vector3 randPos(randX, randY, randZ);
+    Box randBox(randPos, Vector3(randX + 10, randY + 10, randZ + 10), 10, 10, 10);
+
+    return MyObject(randBox, randPos, false);
+}
+
 DynamicObject DynamicCreateObject() {
     const int numObjects = 10;
     const int maxCoordX = 800;
@@ -17,7 +33,7 @@ DynamicObject DynamicCreateObject() {
     Vector3 randPos(randX, randY, randZ);
     Box randBox(randPos, Vector3(randX + 10, randY + 10, randZ + 10), 10, 10, 10);
 
-    return DynamicObject(randBox, randPos);
+    return DynamicObject(randBox, randPos, true);
 }
 
 int main() {
@@ -25,17 +41,24 @@ int main() {
 	Vector3 backBottomRight(800.0f, 600.0f, 100.0f);
 	double width = 800, height = 600, depth = 100;
 	MyQuadrant* myTree = new MyQuadrant(frontTopLeft, backBottomRight, width, height, depth);
-    vector<DynamicObject> dynamicObjList;
+    vector<MyObject> objList;
     MyCollision myCollision;
 
 	myTree->BuildTree();
 
     for (int i = 0; i < 8; ++i) {
-        DynamicObject obj = DynamicCreateObject();
         Vector3 target(0, 0, 0);
+
+        MyObject obj = DynamicCreateObject();
         obj.SetDirection(target);
+
+        MyObject obj2 = CreateObject();
+        obj2.SetDirection(target);
+
         myTree->rootNode->AddObject(obj);
-        dynamicObjList.push_back(obj);
+        myTree->rootNode->AddObject(obj2);
+        objList.push_back(obj);
+        objList.push_back(obj2);
     }
 
     Timer timer;
@@ -57,17 +80,17 @@ int main() {
         //    }
         //}
 
-        for (auto it = dynamicObjList.begin(); it != dynamicObjList.end(); ) {
-            DynamicObject& obj = *it;
+        for (auto it = objList.begin(); it != objList.end(); ) {
+            MyObject& obj = *it;
             obj.Move(timer.mSecondPerFrame);
 
             bool shouldDelete = false;
-            for (auto it2 = dynamicObjList.begin(); it2 != dynamicObjList.end(); ++it2) {
+            for (auto it2 = objList.begin(); it2 != objList.end(); ++it2) {
                 if (it == it2) {
-                    continue; // Skip self
+                    continue;
                 }
 
-                DynamicObject& obj2 = *it2;
+                MyObject& obj2 = *it2;
 
                 if (myCollision.CheckCollision(obj.GetBox(), obj2.GetBox())) {
                     shouldDelete = true;
@@ -76,10 +99,10 @@ int main() {
             }
 
             if (shouldDelete) {
-                it = dynamicObjList.erase(it); // Erase the element and advance the iterator.
+                it = objList.erase(it);
             }
             else {
-                ++it; // Move to the next element.
+                ++it;
             }
         }
 
@@ -87,13 +110,13 @@ int main() {
         timer.Render();
 
         int index = 0;
-            for (DynamicObject& obj : dynamicObjList) {
+            for (MyObject& obj : objList) {
                 cout << "[" << index++ << "] " << "( " << obj.mPosition.getX() <<
                     ", " << obj.mPosition.getY()
                     << ", " << obj.mPosition.getZ() << ", )" << endl;
             }
 
-        Sleep(16);            
+        Sleep(300);            
     }
 
 	delete myTree;
