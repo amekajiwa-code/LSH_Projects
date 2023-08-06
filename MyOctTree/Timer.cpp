@@ -5,7 +5,7 @@ bool Timer::Init() {
 	mTimer = 0.0f;
 	mSecondPerFrame = 0.0f;
 	mBeforeTime = timeGetTime();
-	mFPS = 0.0f;
+	mFPS = 0;
 	return true;
 }
 

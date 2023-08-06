@@ -26,6 +26,7 @@ int main() {
 	double width = 800, height = 600, depth = 100;
 	MyQuadrant* myTree = new MyQuadrant(frontTopLeft, backBottomRight, width, height, depth);
     vector<DynamicObject> dynamicObjList;
+    MyCollision myCollision;
 
 	myTree->BuildTree();
 
@@ -43,8 +44,43 @@ int main() {
     while (true) {
         timer.Frame();
 
-        for (DynamicObject& obj : dynamicObjList) {
+        //for (DynamicObject& obj : dynamicObjList) {
+        //    obj.Move(timer.mSecondPerFrame);
+        //    for (DynamicObject& obj2 : dynamicObjList) {
+        //        if (obj.GetBox().mFrontTopLeft == obj2.GetBox().mFrontTopLeft) {
+        //            continue;
+        //        }
+
+        //        if (myCollision.CheckCollision(obj.GetBox(), obj2.GetBox())) {
+        //            //obj와 obj2 dynamicObjList에서 삭제
+        //        }
+        //    }
+        //}
+
+        for (auto it = dynamicObjList.begin(); it != dynamicObjList.end(); ) {
+            DynamicObject& obj = *it;
             obj.Move(timer.mSecondPerFrame);
+
+            bool shouldDelete = false;
+            for (auto it2 = dynamicObjList.begin(); it2 != dynamicObjList.end(); ++it2) {
+                if (it == it2) {
+                    continue; // Skip self
+                }
+
+                DynamicObject& obj2 = *it2;
+
+                if (myCollision.CheckCollision(obj.GetBox(), obj2.GetBox())) {
+                    shouldDelete = true;
+                    break;
+                }
+            }
+
+            if (shouldDelete) {
+                it = dynamicObjList.erase(it); // Erase the element and advance the iterator.
+            }
+            else {
+                ++it; // Move to the next element.
+            }
         }
 
         system("cls");
@@ -56,9 +92,8 @@ int main() {
                     ", " << obj.mPosition.getY()
                     << ", " << obj.mPosition.getZ() << ", )" << endl;
             }
-        
 
-        Sleep(500);
+        Sleep(16);            
     }
 
 	delete myTree;
