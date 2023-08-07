@@ -15,49 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeometryUtils.h">
+    <ClInclude Include="framework.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
+    <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MyQuadrant.h">
+    <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MyObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MyCollision.h">
+    <ClInclude Include="WindowsProject1.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeometryUtils.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MyQuadrant.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MyObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MyCollision.cpp">
+    <ClCompile Include="WindowsProject1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ResourceCompile Include="WindowsProject1.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="WindowsProject1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
