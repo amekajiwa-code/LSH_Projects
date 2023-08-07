@@ -28,14 +28,7 @@ public:
     double getY() const { return mY; }
     double getZ() const { return mZ; }
 
-    void Normalize() {
-        double length = std::sqrt(mX * mX + mY * mY + mZ * mZ);
-        if (length != 0.0f) {
-            mX /= length;
-            mY /= length;
-            mZ /= length;
-        }
-    }
+    void Normalize();
 };
 
 class Box {

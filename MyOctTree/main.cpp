@@ -116,7 +116,7 @@ int main() {
                     << ", " << obj.mPosition.getZ() << ", )" << endl;
             }
 
-        Sleep(300);            
+        Sleep(16);  
     }
 
 	delete myTree;

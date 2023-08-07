@@ -41,6 +41,15 @@ Vector3& Vector3::operator=(const Vector3& other) {
     return *this;
 }
 
+void Vector3::Normalize() {
+    double length = std::sqrt(mX * mX + mY * mY + mZ * mZ);
+    if (length != 0.0f) {
+        mX /= length;
+        mY /= length;
+        mZ /= length;
+    }
+}
+
 Box::Box(const Vector3& frontTopLeft,
     const Vector3& backBottomRight,
     double width, double height, double depth)
