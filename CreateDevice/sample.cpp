@@ -53,7 +53,7 @@ bool sample::Frame() {
 };
 
 bool sample::Render() {
-    float color[4] = { 255.f, 0.f, 255.f, 1.f };
+    float color[4] = { 1.0f , 0, 0, 1.0f };
     mImmediateContext->ClearRenderTargetView(mRenderTargetView, color);
     // 지형, 캐릭터, 오브젝트, 이펙트, 인터페이스
     HRESULT hResult = mSwapChain->Present(0, 0);

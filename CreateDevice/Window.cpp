@@ -33,6 +33,8 @@ bool Window::SetWindow(const WCHAR* szTitle, DWORD dwWindowWidth, DWORD dwWindow
 {
     mDwWindowWidth = dwWindowWidth;
     mDwWindowHeight = dwWindowHeight;
+    mDwWindowPosX = 1920 / 2 - dwWindowWidth / 2;
+    mDwWindowPosY = 1080 / 2 - dwWindowHeight / 2;
 #ifndef _DEBUG
     dwExStyle = WS_EX_TOPMOST;
     dwStyle = WS_POPUPWINDOW;
