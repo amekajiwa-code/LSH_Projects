@@ -7,9 +7,7 @@ struct P3VERTEX {
 	float z;
 };
 
-class sample : public Core {
-private:
-
+class Object : public Core {
 public:
 	ID3D11Buffer* mVertexBuffer = nullptr;
 	ID3DBlob* mVertexShaderCode = nullptr;
@@ -28,6 +26,6 @@ public:
 	bool Render();
 	bool Release();
 
-	sample() {};
-	~sample() {};
+	Object() {};
+	~Object() {};
 };

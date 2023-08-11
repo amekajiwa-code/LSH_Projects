@@ -1,10 +1,14 @@
 #pragma once
 #include <windows.h>
 #include <d3d11.h>
+#include <dxgi.h>
+#include <d3dcompiler.h>
 #pragma comment (lib, "d3d11.lib") // d3d11.dll
+#pragma comment (lib, "dxgi.lib") // d3d11.dll
+#pragma comment (lib, "d3dcompiler.lib") // d3d11.dll
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Window
 {

@@ -72,7 +72,7 @@ bool Device::Frame() {
 };
 
 bool Device::Render() {
-    float color[4] = { 0.0f , 0.5f, 0.5f, 1.0f };
+    float color[4] = { 0.5f , 0.5f, 0.5f, 1.0f };
     mImmediateContext->ClearRenderTargetView(mRenderTargetView, color);
     // 지형, 캐릭터, 오브젝트, 이펙트, 인터페이스
     HRESULT hResult = mSwapChain->Present(0, 0);

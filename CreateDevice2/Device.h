@@ -1,9 +1,8 @@
 #pragma once
 #include "Window.h"
-#include <DXGI.h>
 
 class Device : public Window {
-private:
+public:
 	IDXGIFactory* mFactory = nullptr;
 	ID3D11Device* mDevice = nullptr;
 	ID3D11DeviceContext* mImmediateContext = nullptr;
@@ -15,4 +14,12 @@ public:
 	bool  Frame();
 	bool  Render();
 	bool  Release();
+
+	ID3D11Device* GetDevice() {
+		return mDevice;
+	}
+
+	ID3D11DeviceContext* GetContext() {
+		return mImmediateContext;
+	}
 };
