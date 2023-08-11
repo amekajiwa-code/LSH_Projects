@@ -97,6 +97,10 @@ HRESULT sample::InputLayout()
         mVertexShaderCode->GetBufferSize(),
         &mVertexLayout);
 
+    if (FAILED(hResult)) {
+        MessageBoxA(NULL, "1", "2", MB_OK);
+    }
+
     return hResult;
 }
 
