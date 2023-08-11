@@ -142,11 +142,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="Device.cpp" />
     <ClCompile Include="sample.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Device.h" />
     <ClInclude Include="sample.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

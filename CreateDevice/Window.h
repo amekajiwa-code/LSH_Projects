@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include <vector>
 #include <d3d11.h>
 #pragma comment (lib, "d3d11.lib") // d3d11.dll
 

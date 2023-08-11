@@ -1,23 +1,36 @@
 #include "sample.h"
 
 HRESULT MyDevice::CreateDevice() {
-    HRESULT hResult;
+    HRESULT hResult = S_OK;
 
-    UINT Flags = 0;
     D3D_DRIVER_TYPE DriverType = D3D_DRIVER_TYPE_HARDWARE;
     D3D_FEATURE_LEVEL FeatureLevels = D3D_FEATURE_LEVEL_11_0;
+    UINT Flags = 0;
+
+    hResult = D3D11CreateDevice(
+        nullptr,
+        DriverType,
+        nullptr,
+        Flags,
+        &FeatureLevels,
+        1,
+        D3D11_SDK_VERSION,
+        &mDevice,
+        nullptr,
+        &mImmediateContext
+    );
 
     if (FAILED(hResult)) {
-        return false;
+        return hResult;
     }
 
-    return S_OK;
+    return hResult;
 }
 
 HRESULT MyDevice::CreateFactory() {
-    HRESULT hResult;
+    HRESULT hResult = S_OK;
     if (FAILED(hResult = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&mFactory)))) {
-        return false;
+        return hResult;
     }
     return hResult;
 }
@@ -26,8 +39,8 @@ HRESULT MyDevice::CreateSwapChain() {
     HRESULT hResult = S_OK;
     if (mFactory == NULL) return S_FALSE;
 
-    DXGI_SWAP_CHAIN_DESC SwapChainDesc;
-    ZeroMemory(&SwapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
+    DXGI_SWAP_CHAIN_DESC SwapChainDesc = {};
+    //ZeroMemory(&SwapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
     SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     SwapChainDesc.BufferCount = 1;
     SwapChainDesc.OutputWindow = mHWnd;
@@ -39,7 +52,7 @@ HRESULT MyDevice::CreateSwapChain() {
     SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     SwapChainDesc.SampleDesc.Count = 1;
 
-    if (FAILED(hResult = mFactory->CreateSwapChain(mDevice, &SwapChainDesc, &mSwapChain))); {
+    if (FAILED(hResult = mFactory->CreateSwapChain(mDevice, &SwapChainDesc, &mSwapChain))) {
         return hResult;
     }
 
@@ -56,7 +69,7 @@ HRESULT MyDevice::SetRenderTargetView() {
 
         if (FAILED(hResult)) {
             backBuffer->Release();
-            return false;
+            return hResult;
         }
     }
 }
@@ -70,7 +83,29 @@ HRESULT MyDevice::SetViewPort() {
     mViewPort.TopLeftX = 0;
     mViewPort.TopLeftY = 0;
     mImmediateContext->RSSetViewports(1, &mViewPort); // 레스터라이저
-    return S_OK;
+    return hResult;
+}
+
+HRESULT MyDevice::CreateVertexBuffer()
+{
+    HRESULT hResult = S_OK;
+    mVertices.resize(6);
+    mVertices[0].x = -1.0f; mVertices[0].y = 1.0f; mVertices[0].z = 0.5f;
+    mVertices[1].x = 1.0f; mVertices[1].y = 1.0f; mVertices[1].z = 0.5f;
+    mVertices[2].x = -1.0f; mVertices[2].y = -1.0f; mVertices[2].z = 0.5f;
+
+    mVertices[3].x = -1.0f; mVertices[3].y = -1.0f; mVertices[3].z = 0.5f;
+    mVertices[4].x = 1.0f; mVertices[4].y = 1.0f; mVertices[4].z = 0.5f;
+    mVertices[5].x = 1.0f; mVertices[5].y = -1.0f; mVertices[5].z = 0.5f;
+
+    return hResult;
+}
+
+HRESULT MyDevice::LoadShaderAndInputLayout()
+{
+    HRESULT hResult = S_OK;
+
+    return hResult;
 }
 
 bool sample::Init() {

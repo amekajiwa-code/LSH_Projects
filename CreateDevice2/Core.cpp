@@ -1,37 +1,30 @@
 #include "Core.h"
 
-bool  Core::Init() {
-	return true;
-}
-
-bool  Core::Frame() {
-	return true;
-}
-
-bool  Core::Render() {
-	return true;
-}
-
-bool  Core::Release() {
-	return true;
-}
+bool  Core::Init() {	return true;}
+bool  Core::Frame() {	return true;}
+bool  Core::Render() {	return true;}
+bool  Core::Release() {	return true;}
 
 bool  Core::EngineInit() {
+    Device::Init();
 	Init();
 	return true;
 }
 
 bool  Core::EngineFrame() {
+    Device::Frame();
 	Frame();
 	return true;
 }
 
 bool  Core::EngineRender() {
+    Device::Render();
 	Render();
 	return true;
 }
 
 bool  Core::EngineRelease() {
+    Device::Release();
 	Release();
 	return true;
 }
