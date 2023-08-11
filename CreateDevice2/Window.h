@@ -23,7 +23,7 @@ public:
 	DWORD mDwWindowHeight = 0; // 윈도우 위치, 크기
 
 	bool SetRegisterWindow(HINSTANCE hInstance);
-	bool SetWindow(const WCHAR* szTitle, DWORD dwWindowWidth = 800, DWORD dwWindowHeight = 600);
+	bool SetWindow(const WCHAR* szTitle, DWORD dwWindowWidth, DWORD dwWindowHeight);
 	virtual ~Window() {
 
 	};

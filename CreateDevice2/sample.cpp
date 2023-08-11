@@ -2,10 +2,19 @@
 
 HRESULT sample::CreateVertexBuffer()
 {
-    verticles.resize(3);
-    verticles[0].x = -1.0f; verticles[0].y = 1.0f; verticles[0].z = 0.5f;
-    verticles[1].x = 1.0f; verticles[1].y = 1.0f; verticles[1].z = 0.5f;
-    verticles[2].x = -1.0f; verticles[2].y = -1.0f; verticles[2].z = 0.5f;
+    //ÁÂÇ¥°è ±âÁØÀ¸·Î ¿ÞÂÊÀ§¿¡ »ï°¢Çü Çü¼º
+    verticles.resize(9);
+    verticles[0].x = -1.0f; verticles[0].y = 1.0f; verticles[0].z = 0.0f;
+    verticles[1].x = 1.0f; verticles[1].y = 1.0f; verticles[1].z = 0.0f;
+    verticles[2].x = -1.0f; verticles[2].y = 0.0f; verticles[2].z = 0.0f;
+
+    verticles[3].x = -1.0f; verticles[3].y = -1.0f; verticles[3].z = 0.0f;
+    verticles[4].x = 1.0f; verticles[4].y = 0.0f; verticles[4].z = 0.0f;
+    verticles[5].x = 1.0f; verticles[5].y = -1.0f; verticles[5].z = 0.0f;
+
+    verticles[6].x = 0.0f; verticles[6].y = 0.5f; verticles[6].z = 0.0f;
+    verticles[7].x = 0.5f; verticles[7].y = -0.5f; verticles[7].z = 0.0f;
+    verticles[8].x = -0.5f; verticles[8].y = -0.5f; verticles[8].z = 0.0f;
 
     D3D11_BUFFER_DESC bufferDesc = {};
     bufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -18,6 +27,7 @@ HRESULT sample::CreateVertexBuffer()
     HRESULT hResult = mDevice->CreateBuffer(&bufferDesc, &InitData, &mVertexBuffer);
     if (FAILED(hResult))
     {
+        MessageBoxA(mHWnd, "CreateVertexBuffer", "CreateVertexBuffer", MB_OK);
         return hResult;
     }
 
@@ -40,6 +50,7 @@ HRESULT sample::LoadVertexShader()
         &ErrorCode);
     if (FAILED(hResult))
     {
+        MessageBoxA(mHWnd, "LoadVertexShader", "LoadVertexShader", MB_OK);
         return hResult;
     }
     hResult = mDevice->CreateVertexShader(
@@ -69,6 +80,7 @@ HRESULT sample::LoadPixelShader()
         &ErrorCode);
     if (FAILED(hResult))
     {
+        MessageBoxA(mHWnd, "LoadPixelShader", "LoadPixelShader", MB_OK);
         return hResult;
     }
     hResult = mDevice->CreatePixelShader(
@@ -86,7 +98,7 @@ HRESULT sample::InputLayout()
 {
     const D3D11_INPUT_ELEMENT_DESC layout[] =
     {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
     };
 
     UINT numCount = sizeof(layout) / sizeof(layout[0]);
@@ -98,7 +110,8 @@ HRESULT sample::InputLayout()
         &mVertexLayout);
 
     if (FAILED(hResult)) {
-        MessageBoxA(NULL, "1", "2", MB_OK);
+        MessageBoxA(mHWnd, "InputLayout", "InputLayout", MB_OK);
+        return hResult;
     }
 
     return hResult;
@@ -115,7 +128,7 @@ bool sample::Init()
 
 bool sample::Frame()
 {
-    return false;
+    return true;
 }
 
 bool sample::Render()

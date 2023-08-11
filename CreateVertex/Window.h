@@ -1,10 +1,6 @@
 #pragma once
-#include <windows.h>
-#include <vector>
-#include <d3d11.h>
-#pragma comment (lib, "d3d11.lib") // d3d11.dll
+#include "Mecro.h"
 
-#include <string>
 class Window
 {
 public:
@@ -18,9 +14,9 @@ public:
 	DWORD mDwWindowHeight = 0; // 윈도우 위치, 크기
 
 	bool SetRegisterWindow(HINSTANCE hInstance);
-	bool SetWindow(const WCHAR* szTitle, DWORD dwWindowWidth = 800, DWORD dwWindowHeight = 600);
-	virtual ~Window() {
+	bool SetWindow(const WCHAR* szTitle, DWORD dwWindowWidth, DWORD dwWindowHeight);
+	bool Run();
 
-	};
+	Window() {};
+	virtual ~Window() {};
 };
-

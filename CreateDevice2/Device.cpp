@@ -71,14 +71,25 @@ bool Device::Frame() {
     return true;
 };
 
-bool Device::Render() {
-    float color[4] = { 0.5f , 0.5f, 0.5f, 1.0f };
+bool  Device::PreRender()
+{
+    float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
     mImmediateContext->ClearRenderTargetView(mRenderTargetView, color);
-    // 지형, 캐릭터, 오브젝트, 이펙트, 인터페이스
-    HRESULT hResult = mSwapChain->Present(0, 0);
+    return true;
+}
+bool  Device::PostRender()
+{
+    HRESULT hr = mSwapChain->Present(0, 0);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+    return true;
+}
 
-    if (FAILED(hResult)) return false;
-
+bool Device::Render() {
+    PreRender();
+    PostRender();
     return true;
 };
 

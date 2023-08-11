@@ -18,8 +18,9 @@ bool  Core::EngineFrame() {
 }
 
 bool  Core::EngineRender() {
-    Device::Render();
+    Device::PreRender();
 	Render();
+    Device::PostRender();
 	return true;
 }
 
