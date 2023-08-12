@@ -68,21 +68,21 @@ bool Object::LoadTextureFile(std::wstring fileName)
 HRESULT Object::CreateVertexBuffer()
 {
     //좌표계 기준으로 왼쪽위에 삼각형 형성
-    verticles.resize(3);
+    verticles.resize(6);
     // u, v
     verticles[0].u = 0.0f; verticles[0].v = 0.0f;
     verticles[1].u = 1.0f; verticles[1].v = 0.0f;
     verticles[2].u = 0.0f; verticles[2].v = 1.0f;
-    /*verticles[3].u = 0.0f; verticles[3].v = 0.0f;
+    verticles[3].u = 0.0f; verticles[3].v = 1.0f;
     verticles[4].u = 1.0f; verticles[4].v = 0.0f;
-    verticles[5].u = 0.0f; verticles[5].v = 1.0f;*/
+    verticles[5].u = 1.0f; verticles[5].v = 1.0f;
     // x, y, z
-    verticles[0].x = 0.0f; verticles[0].y = 0.0f; verticles[0].z = 0.0f;
-    verticles[1].x = 1.0f; verticles[1].y = 0.0f; verticles[1].z = 0.0f;
-    verticles[2].x = 0.0f; verticles[2].y = -1.0f; verticles[2].z = 0.0f;
-    /*verticles[3].x = -1.0f; verticles[3].y = 1.0f; verticles[3].z = 0.0f;
+    verticles[0].x = -1.0f; verticles[0].y = 1.0f; verticles[0].z = 0.0f;
+    verticles[1].x = 1.0f; verticles[1].y = 1.0f; verticles[1].z = 0.0f;
+    verticles[2].x = -1.0f; verticles[2].y = -1.0f; verticles[2].z = 0.0f;
+    verticles[3].x = -1.0f; verticles[3].y = -1.0f; verticles[3].z = 0.0f;
     verticles[4].x = 1.0f; verticles[4].y = 1.0f; verticles[4].z = 0.0f;
-    verticles[5].x = -1.0f; verticles[5].y = -1.0f; verticles[5].z = 0.0f;*/
+    verticles[5].x = 1.0f; verticles[5].y = -1.0f; verticles[5].z = 0.0f;
 
     D3D11_BUFFER_DESC bufferDesc = {};
     bufferDesc.Usage = D3D11_USAGE_DEFAULT;
