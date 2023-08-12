@@ -1,4 +1,11 @@
-float4 PS(in float4 p : SV_POSITION) : SV_Target
+Texture2D g_txDiffuse1 : register(t0);
+SamplerState sample0 : register(s0);
+struct PS_IN
 {
-	return float4(1.0f, 0.5f, 0.5f, 1.0f);
+    float4 p : SV_POSITION;
+    float2 t : TEXTURE;
+};
+float4 PS(PS_IN vIn) : SV_Target
+{
+    return g_txDiffuse1.Sample(sample0, vIn.t);
 }

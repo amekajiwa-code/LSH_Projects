@@ -6,9 +6,11 @@
 #pragma comment (lib, "d3d11.lib") // d3d11.dll
 #pragma comment (lib, "dxgi.lib") // d3d11.dll
 #pragma comment (lib, "d3dcompiler.lib") // d3d11.dll
+#pragma comment (lib, "DirectXTex.lib") // DirectXTex.h
 
 #include <string>
 #include <vector>
+#include <memory>
 
 class Window
 {
