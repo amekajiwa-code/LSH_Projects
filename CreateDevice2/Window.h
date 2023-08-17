@@ -7,10 +7,14 @@
 #pragma comment (lib, "dxgi.lib") // d3d11.dll
 #pragma comment (lib, "d3dcompiler.lib") // d3d11.dll
 #pragma comment (lib, "DirectXTex.lib") // DirectXTex.h
+#include "DirectXTex.h"
 
 #include <string>
 #include <vector>
 #include <memory>
+#include <unordered_map>
+
+using namespace std;
 
 class Window
 {

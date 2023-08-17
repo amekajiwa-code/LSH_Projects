@@ -9,8 +9,8 @@ bool Device::Init() {
     SwapChainDesc.OutputWindow = mHWnd;
     SwapChainDesc.Windowed = true;
     //백 버퍼 세팅
-    SwapChainDesc.BufferDesc.Width = 800; // 버퍼 크기
-    SwapChainDesc.BufferDesc.Height = 600;
+    SwapChainDesc.BufferDesc.Width = mDwWindowWidth; // 버퍼 크기
+    SwapChainDesc.BufferDesc.Height = mDwWindowHeight;
     SwapChainDesc.BufferDesc.RefreshRate.Numerator = 60; // 버퍼 주사율 분자
     SwapChainDesc.BufferDesc.RefreshRate.Denominator = 1; // 버퍼 주사율 분모
     SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM; // 색 포멧
@@ -73,7 +73,7 @@ bool Device::Frame() {
 
 bool  Device::PreRender()
 {
-    float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float color[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
     mImmediateContext->ClearRenderTargetView(mRenderTargetView, color);
     return true;
 }
