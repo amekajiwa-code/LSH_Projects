@@ -1,8 +1,11 @@
 #pragma once
 #include "Device.h"
+#include "Timer.h"
 
 class Core : public Device
 {
+protected:
+    Timer mGameTimer;
 public:
     virtual bool  Init();
     virtual bool  Frame();

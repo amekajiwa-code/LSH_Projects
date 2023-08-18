@@ -7,18 +7,21 @@ bool  Core::Release() {	return true;}
 
 bool  Core::EngineInit() {
     Device::Init();
+    mGameTimer.Init();
 	Init();
 	return true;
 }
 
 bool  Core::EngineFrame() {
     Device::Frame();
+    mGameTimer.Frame();
 	Frame();
 	return true;
 }
 
 bool  Core::EngineRender() {
     Device::PreRender();
+    mGameTimer.Render();
 	Render();
     Device::PostRender();
 	return true;
@@ -26,6 +29,7 @@ bool  Core::EngineRender() {
 
 bool  Core::EngineRelease() {
     Device::Release();
+    mGameTimer.Release();
 	Release();
 	return true;
 }

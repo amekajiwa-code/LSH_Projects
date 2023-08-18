@@ -9,6 +9,7 @@ void Object::Set(ID3D11Device* device, ID3D11DeviceContext* immediateContext)
 bool Object::Create(TextureManager& texMg, wstring texFileName, ShaderManager& shaMg, wstring shaFileName)
 {
     CreateVertexBuffer();
+    CreateConstantBuffer();
     mTexture = texMg.Load(texFileName);
     mShader = shaMg.Load(shaFileName);
     //LoadVertexShader();
@@ -19,24 +20,76 @@ bool Object::Create(TextureManager& texMg, wstring texFileName, ShaderManager& s
     return true;
 }
 
+void Object::SetPos(Vector3 pos)
+{
+    mPos = pos;
+}
+
+void Object::SetScale(Vector3 scale)
+{
+    mScale = scale;
+}
+
+void Object::SetMatrix(Matrix* matWorld, Matrix* matView, Matrix* matProjection)
+{
+    if (matWorld != nullptr)
+    {
+        mMatWorld = *matWorld;
+        mMatData.matWorld = mMatWorld.Transpose();
+    }
+    
+    if (matView != nullptr)
+    {
+        mMatView = *matView;
+        mMatData.matView = mMatView.Transpose();
+    }
+
+    if (matProjection != nullptr)
+    {
+        mMatProjection = *matProjection;
+        mMatData.matProjection = mMatProjection.Transpose();
+    }
+    
+    mMatData.matWorld = mMatWorld.Transpose();
+    mMatData.matView = mMatView.Transpose();
+    mMatData.matProjection = mMatProjection.Transpose();
+    mImmediateContext->UpdateSubresource(mConstantBuffer, 0, nullptr, &mMatData, 0, 0);
+}
+
+bool Object::CreateConstantBuffer()
+{
+    D3D11_BUFFER_DESC bufferDesc = {};
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = sizeof(MatrixData);
+    bufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+    HRESULT hResult = mDevice->CreateBuffer(&bufferDesc, nullptr, &mConstantBuffer);
+    if (FAILED(hResult))
+    {
+        return false;
+    }
+
+    return true;
+}
+
 bool Object::CreateVertexBuffer()
 {
     //좌표계 기준으로 왼쪽위에 삼각형 형성
     verticles.resize(6);
     // u, v
-    verticles[0].u = 0.0f; verticles[0].v = 0.0f;
-    verticles[1].u = 1.0f; verticles[1].v = 0.0f;
-    verticles[2].u = 0.0f; verticles[2].v = 1.0f;
-    verticles[3].u = 0.0f; verticles[3].v = 1.0f;
-    verticles[4].u = 1.0f; verticles[4].v = 0.0f;
-    verticles[5].u = 1.0f; verticles[5].v = 1.0f;
+    verticles[0].t.mX = 0.0f; verticles[0].t.mY = 0.0f;
+    verticles[1].t.mX = 1.0f; verticles[1].t.mY = 0.0f;
+    verticles[2].t.mX = 0.0f; verticles[2].t.mY = 1.0f;
+    verticles[3].t.mX = 0.0f; verticles[3].t.mY = 1.0f;
+    verticles[4].t.mX = 1.0f; verticles[4].t.mY = 0.0f;
+    verticles[5].t.mX = 1.0f; verticles[5].t.mY = 1.0f;
     // x, y, z
-    verticles[0].x = -1.0f / 2; verticles[0].y = 1.0f / 2; verticles[0].z = 1.0f;
-    verticles[1].x = 1.0f / 2; verticles[1].y = 1.0f / 2; verticles[1].z = 1.0f;
-    verticles[2].x = -1.0f / 2; verticles[2].y = -1.0f / 2; verticles[2].z = 1.0f;
-    verticles[3].x = -1.0f / 2; verticles[3].y = -1.0f / 2; verticles[3].z = 1.0f;
-    verticles[4].x = 1.0f / 2; verticles[4].y = 1.0f / 2; verticles[4].z = 1.0f;
-    verticles[5].x = 1.0f / 2; verticles[5].y = -1.0f / 2; verticles[5].z = 1.0f;
+    verticles[0].p.mX = -1.0f; verticles[0].p.mY = 1.0f; verticles[0].p.mZ = 1.0f;
+    verticles[1].p.mX = 1.0f; verticles[1].p.mY = 1.0f; verticles[1].p.mZ = 1.0f;
+    verticles[2].p.mX = -1.0f; verticles[2].p.mY = -1.0f; verticles[2].p.mZ = 1.0f;
+    verticles[3].p.mX = -1.0f; verticles[3].p.mY = -1.0f; verticles[3].p.mZ = 1.0f;
+    verticles[4].p.mX = 1.0f; verticles[4].p.mY = 1.0f; verticles[4].p.mZ = 1.0f;
+    verticles[5].p.mX = 1.0f; verticles[5].p.mY = -1.0f; verticles[5].p.mZ = 1.0f;
 
     D3D11_BUFFER_DESC bufferDesc = {};
     bufferDesc.Usage = D3D11_USAGE_DEFAULT;
