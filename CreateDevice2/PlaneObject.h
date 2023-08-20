@@ -15,7 +15,7 @@ private:
 public:
 	NPC()
 	{
-		mDirection = { randstep(-1, +1), randstep(-1, +1), 0 };
+		mDirection = { (float)randstep(-1, 1), (float)randstep(-1, 1), 0 };
 	}
 
 	void Move(float second)

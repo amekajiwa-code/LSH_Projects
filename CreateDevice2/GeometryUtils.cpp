@@ -1,6 +1,6 @@
 #include "GeometryUtils.h"
 
-Vector2::Vector2(double x, double y) : mX(x), mY(y) {}
+Vector2::Vector2(float x, float y) : mX(x), mY(y) {}
 
 Vector2::Vector2(const Vector2& other) : mX(other.mX), mY(other.mY) {}
 
@@ -20,11 +20,11 @@ Vector2 Vector2::operator-(const Vector2& other) const {
     return Vector2(mX - other.mX, mY - other.mY);
 }
 
-Vector2 Vector2::operator*(double scalar) const {
+Vector2 Vector2::operator*(float scalar) const {
     return Vector2(mX * scalar, mY * scalar);
 }
 
-Vector2 Vector2::operator/(double scalar) const {
+Vector2 Vector2::operator/(float scalar) const {
     if (scalar != 0.0) {
         return Vector2(mX / scalar, mY / scalar);
     }
@@ -48,7 +48,7 @@ void Vector2::Normalize() {
     }
 }
 //------------------------------------------------------------------------------------------
-Vector3::Vector3(double x, double y, double z) : mX(x), mY(y), mZ(z) {}
+Vector3::Vector3(float x, float y, float z) : mX(x), mY(y), mZ(z) {}
 
 Vector3::Vector3(const Vector3& other) : mX(other.mX), mY(other.mY), mZ(other.mZ) {}
 
@@ -68,11 +68,11 @@ Vector3 Vector3::operator-(const Vector3& other) const {
     return Vector3(mX - other.mX, mY - other.mY, mZ - other.mZ);
 }
 
-Vector3 Vector3::operator*(double scalar) const {
+Vector3 Vector3::operator*(float scalar) const {
     return Vector3(mX * scalar, mY * scalar, mZ * scalar);
 }
 
-Vector3 Vector3::operator/(double scalar) const {
+Vector3 Vector3::operator/(float scalar) const {
     if (scalar != 0.0) {
         return Vector3(mX / scalar, mY / scalar, mZ / scalar);
     }
@@ -100,7 +100,7 @@ void Vector3::Normalize() {
 
 Box::Box(const Vector3& frontTopLeft,
     const Vector3& backBottomRight,
-    double width, double height, double depth)
+    float width, float height, float depth)
     : mFrontTopLeft(frontTopLeft), mWidth(width), mHeight(height), mDepth(depth) {
     mFrontTopRight = Vector3(frontTopLeft.getX() + width, frontTopLeft.getY(), frontTopLeft.getZ());
     mFrontBottomLeft = Vector3(frontTopLeft.getX(), frontTopLeft.getY() + height, frontTopLeft.getZ());

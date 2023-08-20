@@ -38,7 +38,7 @@ public:
 	vector<P3VERTEX> verticles;
 
 	void Set(ID3D11Device* device, ID3D11DeviceContext* immediateContext);
-	bool  Create(TextureManager& texMg, wstring texFileName, ShaderManager& shaMg, wstring shaFileName);
+	bool Create(TextureManager& texMg, wstring texFileName, ShaderManager& shaMg, wstring shaFileName);
 
 	void SetPos(Vector3 pos);
 	void SetScale(Vector3 scale);

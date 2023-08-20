@@ -19,7 +19,7 @@ bool sample::Init()
     mShaMg.Set(mDevice, mImmediateContext);
 
     srand(time(NULL)); // 현재 시간으로 시드 설정
-    wstring texname = L"bg.jpg";
+    wstring texname = L"anajuyo_alpha.png";
     obj = new PlaneObject;
     obj->Set(mDevice, mImmediateContext);
     obj->SetScale(Vector3(800.0f, 600.0f, 1.0f));
@@ -28,7 +28,7 @@ bool sample::Init()
     for (int i = 0; i < 10; ++i)
     {
         Object* tempObj = new NPC; // 자식으로 캐스팅
-        tempObj->SetPos(Vector3(randstep(-800.0f, 800.0f), randstep(-800.0f, 800.0f), 0));
+        tempObj->SetPos(Vector3((float)randstep(-800.0f, 800.0f), (float)randstep(-800.0f, 800.0f), 0));
         tempObj->Set(mDevice, mImmediateContext);
         tempObj->SetScale(Vector3(50.0f, 50.0f, 1.0f));
         tempObj->Create(mTexMg, L"anajuyo_alpha.png", mShaMg, L"Plane.hlsl");
@@ -51,19 +51,19 @@ bool sample::Frame()
 
     if (dwKeyState['A'] == 1)
     {
-        mCameraPos.mX -= 500.0f * mGameTimer.mSecondPerFrame;
+        mCameraPos.mX -= (float)500.0f * mGameTimer.mSecondPerFrame;
     }
     if (dwKeyState['D'] == 1)
     {
-        mCameraPos.mX += 500.0f * mGameTimer.mSecondPerFrame;
+        mCameraPos.mX += (float)500.0f * mGameTimer.mSecondPerFrame;
     }
     if (dwKeyState['W'] == 1)
     {
-        mCameraPos.mY += 500.0f * mGameTimer.mSecondPerFrame;
+        mCameraPos.mY += (float)500.0f * mGameTimer.mSecondPerFrame;
     }
     if (dwKeyState['S'] == 1)
     {
-        mCameraPos.mY -= 500.0f * mGameTimer.mSecondPerFrame;
+        mCameraPos.mY -= (float)500.0f * mGameTimer.mSecondPerFrame;
     }
 
     obj->Frame();
@@ -83,14 +83,14 @@ bool sample::Render()
     mMatView._41 = -mCameraPos.mX;
     mMatView._42 = -mCameraPos.mY;
     mMatView._43 = -mCameraPos.mZ;
-    mMatOrthonormalProjection._11 = 2.0f / static_cast<float>(mDwWindowWidth);
-    mMatOrthonormalProjection._22 = 2.0f / static_cast<float>(mDwWindowHeight);
+    mMatOrthonormalProjection._11 = 2.0f / ((float)mDwWindowWidth);
+    mMatOrthonormalProjection._22 = 2.0f / ((float)mDwWindowHeight);
     obj->SetMatrix(nullptr, &mMatView, &mMatOrthonormalProjection);
     obj->Render();
 
     for (auto o : mNPCs)
     {
-        o-> SetMatrix(nullptr, &mMatView, &mMatOrthonormalProjection);
+        o->SetMatrix(nullptr, &mMatView, &mMatOrthonormalProjection);
         o->Render();
     }
 

@@ -74,6 +74,8 @@ bool Object::CreateConstantBuffer()
 
 bool Object::CreateVertexBuffer()
 {
+    return true;
+
     //좌표계 기준으로 왼쪽위에 삼각형 형성
     verticles.resize(6);
     // u, v

@@ -8,25 +8,25 @@ class Vector2
 public:
     union {
         struct {
-            double mX, mY;
+            float mX, mY;
         };
-        double v[2];
+        float v[2];
     };
 public:
     Vector2() : mX(0), mY(0) {}
-    Vector2(double x, double y);
+    Vector2(float x, float y);
     Vector2(const Vector2& other);
 
     bool operator==(const Vector2& other) const;
     bool operator!=(const Vector2& other) const;
     Vector2 operator+(const Vector2& other) const;
     Vector2 operator-(const Vector2& other) const;
-    Vector2 operator*(double scalar) const;
-    Vector2 operator/(double scalar) const;
+    Vector2 operator*(float scalar) const;
+    Vector2 operator/(float scalar) const;
     Vector2& operator=(const Vector2& other);
 
-    double getX() const { return mX; }
-    double getY() const { return mY; }
+    float getX() const { return mX; }
+    float getY() const { return mY; }
 
     void Normalize();
 };
@@ -36,26 +36,26 @@ class Vector3
 public:
     union {
         struct {
-            double mX, mY, mZ;
+            float mX, mY, mZ;
         };
-        double v[3];
+        float v[3];
     };
 public:
     Vector3() : mX(0), mY(0), mZ(0) {}
-    Vector3(double x, double y, double z);
+    Vector3(float x, float y, float z);
     Vector3(const Vector3& other);
 
     bool operator==(const Vector3& other) const;
     bool operator!=(const Vector3& other) const;
     Vector3 operator+(const Vector3& other) const;
     Vector3 operator-(const Vector3& other) const;
-    Vector3 operator*(double scalar) const;
-    Vector3 operator/(double scalar) const;
+    Vector3 operator*(float scalar) const;
+    Vector3 operator/(float scalar) const;
     Vector3& operator=(const Vector3& other);
 
-    double getX() const { return mX; }
-    double getY() const { return mY; }
-    double getZ() const { return mZ; }
+    float getX() const { return mX; }
+    float getY() const { return mY; }
+    float getZ() const { return mZ; }
 
     void Normalize();
 };
@@ -65,9 +65,9 @@ class Vector4
 public:
     union {
         struct {
-            double mX, mY, mZ, mW;
+            float mX, mY, mZ, mW;
         };
-        double v[4];
+        float v[4];
     };
 
     Vector4()
@@ -131,10 +131,10 @@ public:
     {
         Vector4 ret;
         ret.mW = 1.0f;
-        ret.mX = v.mX * _11 + v.mY * _21 + v.mZ * _31 + 1.0f * _41;
-        ret.mY = v.mX * _12 + v.mY * _22 + v.mZ * _32 + 1.0f * _42;
-        ret.mZ = v.mX * _13 + v.mY * _23 + v.mZ * _33 + 1.0f * _43;
-        ret.mW = v.mX * _14 + v.mY * _24 + v.mZ * _34 + 1.0f * _44;
+        ret.mX = v.mX * _11 + v.mY * _21 + v.mZ * _31 + (float)1.0f * _41;
+        ret.mY = v.mX * _12 + v.mY * _22 + v.mZ * _32 + (float)1.0f * _42;
+        ret.mZ = v.mX * _13 + v.mY * _23 + v.mZ * _33 + (float)1.0f * _43;
+        ret.mW = v.mX * _14 + v.mY * _24 + v.mZ * _34 + (float)1.0f * _44;
 
         /* ret.x /= ret.w;
          ret.y /= ret.w;
@@ -220,17 +220,17 @@ public:
     Vector3 mBackTopRight;
     Vector3 mBackBottomLeft;
     Vector3 mBackBottomRight;
-    double mWidth, mHeight, mDepth;
+    float mWidth, mHeight, mDepth;
 
     Box() {
         mWidth = 0, mHeight = 0, mDepth = 0;
     };
     Box(const Vector3& frontTopLeft,
         const Vector3& backBottomRight,
-        double width, double height, double depth);
+        float width, float height, float depth);
 
     void Set(const Vector3& frontTopLeft,
-        double width, double height, double depth) {
+        float width, float height, float depth) {
         Vector3 backBottomRight(frontTopLeft.mX + width, frontTopLeft.mY + height, frontTopLeft.mZ + depth);
         mFrontTopLeft = frontTopLeft;
         mFrontTopRight = Vector3(backBottomRight.getX(), frontTopLeft.getY(), frontTopLeft.getZ());
