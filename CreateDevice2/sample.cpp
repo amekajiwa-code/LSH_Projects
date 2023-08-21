@@ -4,6 +4,7 @@
 bool sample::Init()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     D3D11_BLEND_DESC blendDesc = {};
     blendDesc.RenderTarget[0].BlendEnable = false;
     
@@ -36,10 +37,15 @@ bool sample::Init()
     }
 
 =======
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
     std::wstring texname = L"ana.jpg";
     obj = new Object;
     obj->Set(mDevice, mImmediateContext);
     obj->Create(texname);
+<<<<<<< HEAD
+>>>>>>> parent of 1a1c732 (블렌딩)
+=======
 >>>>>>> parent of 1a1c732 (블렌딩)
     return true;
 }
@@ -87,6 +93,7 @@ bool sample::Frame()
 bool sample::Render()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     mImmediateContext->OMSetBlendState(mAlphaBlend, 0, -1);
     mMatView._41 = -mCameraPos.mX;
     mMatView._42 = -mCameraPos.mY;
@@ -94,6 +101,8 @@ bool sample::Render()
     mMatOrthonormalProjection._11 = 2.0f / ((float)mDwWindowWidth);
     mMatOrthonormalProjection._22 = 2.0f / ((float)mDwWindowHeight);
     obj->SetMatrix(nullptr, &mMatView, &mMatOrthonormalProjection);
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
 =======
 >>>>>>> parent of 1a1c732 (블렌딩)
     obj->Render();
@@ -112,6 +121,7 @@ bool sample::Release()
     obj->Release();
     delete obj;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     for (auto o : mNPCs)
     {
@@ -120,6 +130,8 @@ bool sample::Release()
     }
 
     mAlphaBlend->Release();
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
 =======
 >>>>>>> parent of 1a1c732 (블렌딩)
     return true;

@@ -5,6 +5,7 @@
 class sample : public Core
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TextureManager mTexMg;
 	ShaderManager mShaMg;
 	ID3D11BlendState* mAlphaBlend = nullptr;
@@ -16,6 +17,8 @@ class sample : public Core
 	Matrix mMatOrthonormalProjection;
 	Vector3 mCameraPos;
 =======
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
 	Object* obj;
 >>>>>>> parent of 1a1c732 (블렌딩)
 public:

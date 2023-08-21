@@ -11,11 +11,16 @@ bool Object::Create(std::wstring texFileName)
 {
     CreateVertexBuffer();
 <<<<<<< HEAD
+<<<<<<< HEAD
     CreateConstantBuffer();
     mTexture = texMg.Load(texFileName);
     mShader = shaMg.Load(shaFileName);
     //LoadVertexShader();
     //LoadPixelShader();
+=======
+    LoadVertexShader();
+    LoadPixelShader();
+>>>>>>> parent of 1a1c732 (블렌딩)
 =======
     LoadVertexShader();
     LoadPixelShader();
@@ -27,7 +32,58 @@ bool Object::Create(std::wstring texFileName)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Object::SetPos(Vector3 pos)
+=======
+bool Object::LoadTextureFile(std::wstring fileName)
+{
+    auto imageobj = std::make_unique<DirectX::ScratchImage>();
+    DirectX::TexMetadata mdata;
+
+    HRESULT hr = DirectX::GetMetadataFromDDSFile(fileName.c_str(), DirectX::DDS_FLAGS_NONE, mdata);
+    if (SUCCEEDED(hr))
+    {
+        hr = DirectX::LoadFromWICFile(fileName.c_str(), DirectX::WIC_FLAGS_NONE, &mdata, *imageobj);
+        if (SUCCEEDED(hr))
+        {
+            hr = DirectX::CreateShaderResourceView(mDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &mTexSRV);
+            if (SUCCEEDED(hr))
+            {
+                return true;
+            }
+        }
+    }
+    hr = DirectX::GetMetadataFromWICFile(fileName.c_str(), DirectX::WIC_FLAGS_NONE, mdata);
+    if (SUCCEEDED(hr))
+    {
+        hr = DirectX::LoadFromWICFile(fileName.c_str(), DirectX::WIC_FLAGS_NONE, &mdata, *imageobj);
+        if (SUCCEEDED(hr))
+        {
+            hr = DirectX::CreateShaderResourceView(mDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &mTexSRV);
+            if (SUCCEEDED(hr))
+            {
+                return true;
+            }
+        }
+    }
+    hr = DirectX::GetMetadataFromTGAFile(fileName.c_str(), DirectX::TGA_FLAGS_NONE, mdata);
+    if (SUCCEEDED(hr))
+    {
+        hr = DirectX::LoadFromTGAFile(fileName.c_str(), DirectX::TGA_FLAGS_NONE, &mdata, *imageobj);
+        if (SUCCEEDED(hr))
+        {
+            hr = DirectX::CreateShaderResourceView(mDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &mTexSRV);
+            if (SUCCEEDED(hr))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+HRESULT Object::CreateVertexBuffer()
+>>>>>>> parent of 1a1c732 (블렌딩)
 {
     mPos = pos;
 }
@@ -144,6 +200,7 @@ HRESULT Object::CreateVertexBuffer()
     verticles[5].t.mX = 1.0f; verticles[5].t.mY = 1.0f;
     // x, y, z
 <<<<<<< HEAD
+<<<<<<< HEAD
     verticles[0].p.mX = -1.0f; verticles[0].p.mY = 1.0f; verticles[0].p.mZ = 1.0f;
     verticles[1].p.mX = 1.0f; verticles[1].p.mY = 1.0f; verticles[1].p.mZ = 1.0f;
     verticles[2].p.mX = -1.0f; verticles[2].p.mY = -1.0f; verticles[2].p.mZ = 1.0f;
@@ -151,12 +208,17 @@ HRESULT Object::CreateVertexBuffer()
     verticles[4].p.mX = 1.0f; verticles[4].p.mY = 1.0f; verticles[4].p.mZ = 1.0f;
     verticles[5].p.mX = 1.0f; verticles[5].p.mY = -1.0f; verticles[5].p.mZ = 1.0f;
 =======
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
     verticles[0].x = -1.0f; verticles[0].y = 1.0f; verticles[0].z = 0.0f;
     verticles[1].x = 1.0f; verticles[1].y = 1.0f; verticles[1].z = 0.0f;
     verticles[2].x = -1.0f; verticles[2].y = -1.0f; verticles[2].z = 0.0f;
     verticles[3].x = -1.0f; verticles[3].y = -1.0f; verticles[3].z = 0.0f;
     verticles[4].x = 1.0f; verticles[4].y = 1.0f; verticles[4].z = 0.0f;
     verticles[5].x = 1.0f; verticles[5].y = -1.0f; verticles[5].z = 0.0f;
+<<<<<<< HEAD
+>>>>>>> parent of 1a1c732 (블렌딩)
+=======
 >>>>>>> parent of 1a1c732 (블렌딩)
 
     D3D11_BUFFER_DESC bufferDesc = {};
