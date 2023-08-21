@@ -1,8 +1,10 @@
 #include "sample.h"
 
-//¹®Á¦Á¡: ¶È°°Àº ¸®¼Ò½º¸¦ °è¼Ó ¹Ýº¹ÇØ¼­ ºÒ·¯¿À±â ¶§¹®¿¡ ºñÈ¿À²Àû -> ¸Å´ÏÀú¸¦ ¸¸µé¾î¼­ ÇØ¼Ò
+//¹®Á¦Á¡: ¶È°°Àº ¸®¼Ò½º¸¦ °è¼Ó ¹Ýº¹ÇØ¼­ ºÒ·¯¿À±â ¶§¹®¿¡ ºñÈ¿À²Àû
 bool sample::Init()
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
     D3D11_BLEND_DESC blendDesc = {};
     blendDesc.RenderTarget[0].BlendEnable = false;
     
@@ -33,6 +35,17 @@ bool sample::Init()
         tempObj->Create(mTexMg, L"../../res/anajuyo_alpha.png", mShaMg, L"Plane.hlsl");
     }
 
+=======
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
+    std::wstring texname = L"ana.jpg";
+    obj = new Object;
+    obj->Set(mDevice, mImmediateContext);
+    obj->Create(texname);
+<<<<<<< HEAD
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
     return true;
 }
 
@@ -78,6 +91,8 @@ bool sample::Frame()
 
 bool sample::Render()
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
     mImmediateContext->OMSetBlendState(mAlphaBlend, 0, -1);
     mMatView._41 = -mCameraPos.mX;
     mMatView._42 = -mCameraPos.mY;
@@ -85,6 +100,10 @@ bool sample::Render()
     mMatOrthonormalProjection._11 = 2.0f / ((float)mDwWindowWidth);
     mMatOrthonormalProjection._22 = 2.0f / ((float)mDwWindowHeight);
     obj->SetMatrix(nullptr, &mMatView, &mMatOrthonormalProjection);
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
     obj->Render();
 
     for (auto o : mNPCs)
@@ -100,6 +119,8 @@ bool sample::Release()
 {
     obj->Release();
     delete obj;
+<<<<<<< HEAD
+<<<<<<< HEAD
 
     for (auto o : mNPCs)
     {
@@ -108,6 +129,10 @@ bool sample::Release()
     }
 
     mAlphaBlend->Release();
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
+=======
+>>>>>>> parent of 1a1c732 (ë¸”ë Œë”©)
     return true;
 }
 

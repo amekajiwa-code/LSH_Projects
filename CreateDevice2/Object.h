@@ -1,7 +1,5 @@
 #pragma once
 #include "Window.h"
-#include "TextureManager.h"
-#include "ShaderManager.h"
 
 struct P3VERTEX {
 	Vector3 p; // xyz
@@ -30,19 +28,49 @@ public:
 	ID3D11DeviceContext* mImmediateContext = nullptr;
 public:
 	ID3D11Buffer* mVertexBuffer = nullptr;
+<<<<<<< HEAD
+<<<<<<< HEAD
 	ID3D11Buffer* mConstantBuffer = nullptr;
+=======
+	ID3DBlob* mVertexShaderCode = nullptr;
+>>>>>>> parent of 1a1c732 (블렌딩)
+=======
+	ID3DBlob* mVertexShaderCode = nullptr;
+>>>>>>> parent of 1a1c732 (블렌딩)
 	ID3D11InputLayout* mVertexLayout = nullptr;
-	const Shader* mShader = nullptr;
-	const Texture* mTexture = nullptr;
+	ID3D11VertexShader* mVS = nullptr;
+	ID3D11PixelShader* mPS = nullptr;
 
-	vector<P3VERTEX> verticles;
+	ID3D11ShaderResourceView* mTexSRV = nullptr;
+
+	std::vector<P3VERTEX> verticles;
 
 	void Set(ID3D11Device* device, ID3D11DeviceContext* immediateContext);
+<<<<<<< HEAD
+<<<<<<< HEAD
 	bool Create(TextureManager& texMg, wstring texFileName, ShaderManager& shaMg, wstring shaFileName);
 
 	void SetPos(Vector3 pos);
 	void SetScale(Vector3 scale);
 	void SetMatrix(Matrix* matWorld, Matrix* matView, Matrix* matProjection);
+=======
+	bool  Create(std::wstring texFileName);
+	bool  LoadTextureFile(std::wstring fileName);
+=======
+	bool  Create(std::wstring texFileName);
+	bool  LoadTextureFile(std::wstring fileName);
+
+	HRESULT CreateVertexBuffer();
+	HRESULT LoadVertexShader();
+	HRESULT LoadPixelShader();
+	HRESULT InputLayout();
+>>>>>>> parent of 1a1c732 (블렌딩)
+
+	HRESULT CreateVertexBuffer();
+	HRESULT LoadVertexShader();
+	HRESULT LoadPixelShader();
+	HRESULT InputLayout();
+>>>>>>> parent of 1a1c732 (블렌딩)
 
 	virtual void Move(float second) {};
 

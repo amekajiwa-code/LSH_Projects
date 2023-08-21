@@ -9,11 +9,12 @@
 #pragma comment (lib, "dxgi.lib") // d3d11.dll
 #pragma comment (lib, "d3dcompiler.lib") // d3d11.dll
 #pragma comment (lib, "DirectXTex.lib") // DirectXTex.h
-#include "DirectXTex.h"
 
 #include <string>
 #include <vector>
 #include <memory>
+<<<<<<< HEAD
+<<<<<<< HEAD
 #include <unordered_map>
 
 #include "GeometryUtils.h"
@@ -21,6 +22,10 @@
 #define randstep(fmin, fmax) ((float)fmin+((float)fmax-(float)fmin)* rand() / RAND_MAX)
 
 using namespace std;
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
+=======
+>>>>>>> parent of 1a1c732 (블렌딩)
 
 class Window
 {
