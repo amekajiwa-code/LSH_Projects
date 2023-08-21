@@ -19,11 +19,10 @@ bool sample::Init()
     mShaMg.Set(mDevice, mImmediateContext);
 
     srand(time(NULL)); // 현재 시간으로 시드 설정
-    wstring texname = L"anajuyo_alpha.png";
     obj = new PlaneObject;
     obj->Set(mDevice, mImmediateContext);
     obj->SetScale(Vector3(800.0f, 600.0f, 1.0f));
-    obj->Create(mTexMg, texname, mShaMg, L"Plane.hlsl");
+    obj->Create(mTexMg, L"../../res/bg.jpg", mShaMg, L"Plane.hlsl");
 
     for (int i = 0; i < 10; ++i)
     {
@@ -31,7 +30,7 @@ bool sample::Init()
         tempObj->SetPos(Vector3((float)randstep(-800.0f, 800.0f), (float)randstep(-800.0f, 800.0f), 0));
         tempObj->Set(mDevice, mImmediateContext);
         tempObj->SetScale(Vector3(50.0f, 50.0f, 1.0f));
-        tempObj->Create(mTexMg, L"anajuyo_alpha.png", mShaMg, L"Plane.hlsl");
+        tempObj->Create(mTexMg, L"../../res/anajuyo_alpha.png", mShaMg, L"Plane.hlsl");
     }
 
     return true;

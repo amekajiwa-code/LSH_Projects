@@ -16,6 +16,13 @@ bool Shader::LoadVertexShader(ID3D11Device* device, wstring fileName)
         &ErrorCode);
     if (FAILED(hResult))
     {
+        if (ErrorCode)
+        {
+            // 오류 메시지 출력
+            char* compileErrors = static_cast<char*>(ErrorCode->GetBufferPointer());
+            OutputDebugStringA(compileErrors);  // Visual Studio 출력창에 메시지 출력
+            ErrorCode->Release();
+        }
         return false;
     }
     hResult = device->CreateVertexShader(
